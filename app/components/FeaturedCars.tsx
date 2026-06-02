@@ -64,7 +64,7 @@ function CarCard({ car }: { car: Car }) {
     <article className="group relative flex flex-col overflow-hidden rounded-2xl bg-card border border-border transition-all duration-500 hover:shadow-elevated hover:-translate-y-1">
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
         <img
-          src={car.image.src || car.image}
+          src={typeof car.image === "string" ? car.image : car.image.src}
           alt={`${car.brand} ${car.model}`}
           loading="lazy"
           width={1024}
