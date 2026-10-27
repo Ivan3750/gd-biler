@@ -12,7 +12,6 @@ const DETAILS: Record<LeadType, Record<string, string>> = {
   contact: {},
   car: {},
   sell: { brand: "Mærke", model: "Model", year: "Årgang", km: "Kilometer", price: "Prisønske" },
-  testdrive: { date: "Ønsket dato", time: "Ønsket tidspunkt" },
   finance: { price: "Bilens pris", down: "Udbetaling", months: "Løbetid (mdr.)", monthly: "Ydelse pr. måned" },
 };
 
@@ -51,12 +50,6 @@ export async function submitLeadAction(_: LeadState, formData: FormData): Promis
   if (phone && !/^[+\d][\d\s().-]{5,}$/.test(phone)) return fail(t.phone);
   if ((type === "contact" || type === "car") && message.length < 10) return fail(t.message);
   if (formData.get("consent") !== "on") return fail(t.consent);
-  if (type === "testdrive") {
-    const date = clean(formData.get("d_date"), 10);
-    const day = Date.parse(`${date}T12:00:00Z`);
-    const today = Date.now() - 36 * 3600 * 1000;
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || day < today || day > Date.now() + 125 * 86400 * 1000) return fail(t.date);
-  }
 
   const details: Record<string, string> = {};
   for (const [key, label] of Object.entries(DETAILS[type])) {
@@ -69,7 +62,7 @@ export async function submitLeadAction(_: LeadState, formData: FormData): Promis
 
   let carId: string | undefined;
   let car: string | undefined;
-  if (type === "car" || type === "testdrive") {
+  if (type === "car") {
     const found = await getCar(clean(formData.get("carId"), 40));
     if (found) {
       carId = found.id;

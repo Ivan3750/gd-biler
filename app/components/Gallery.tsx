@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -12,7 +12,6 @@ type Props = {
 
 export function Gallery({ images, alt, text, badge }: Props) {
   const [i, setI] = useState(0);
-  const startX = useRef<number | null>(null);
   const go = (d: number) => setI((n) => (n + d + images.length) % images.length);
 
   if (images.length === 0) return <div className="aspect-[4/3] rounded-md bg-secondary" />;
@@ -24,16 +23,7 @@ export function Gallery({ images, alt, text, badge }: Props) {
         if (e.key === "ArrowRight") go(1);
       }}
     >
-      <div
-        className="relative aspect-[4/3] touch-pan-y overflow-hidden rounded-md border border-border bg-secondary"
-        onTouchStart={(e) => (startX.current = e.touches[0].clientX)}
-        onTouchEnd={(e) => {
-          if (startX.current === null) return;
-          const dx = e.changedTouches[0].clientX - startX.current;
-          startX.current = null;
-          if (Math.abs(dx) > 45) go(dx < 0 ? 1 : -1);
-        }}
-      >
+      <div className="relative aspect-[4/3] overflow-hidden rounded-md border border-border bg-secondary">
         <Image
           key={images[i]}
           src={images[i]}

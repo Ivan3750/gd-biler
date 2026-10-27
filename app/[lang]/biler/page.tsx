@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/app/components/Breadcrumbs";
 import { CarGrid } from "@/app/components/CarCard";
 import { FilterPanel } from "@/app/components/FilterPanel";
 import { JsonLd } from "@/app/components/JsonLd";
-import { BrandChips, CategoryChips } from "@/app/components/home/Sections";
+import { BrandChips } from "@/app/components/home/Sections";
 import { PageHeader, Section } from "@/app/components/Section";
 import { btnPrimary, btnSecondary, input } from "@/app/components/ui";
 import { distinct, filterCars, listPublicCars } from "@/app/lib/cars";
@@ -154,7 +154,6 @@ export default async function CarsPage({ params, searchParams }: PageProps<"/[la
         </FilterPanel>
 
         <BrandChips lang={lang} brands={brands} label={t.filters.brand} />
-        <CategoryChips lang={lang} dict={dict} bodies={distinct(all.map((c) => c.body))} fuels={distinct(all.map((c) => c.fuel))} />
 
         {all.length === 0 ? (
           <Empty lang={lang} message={t.noStock} hint="" phone={settings.phone} />

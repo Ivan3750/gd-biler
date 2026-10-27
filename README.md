@@ -12,7 +12,7 @@ npm run dev
 ## Sider
 Dansk ligger i roden, engelsk under `/en` (`proxy.ts` omskriver begge til `app/[lang]`).
 `/`, `/biler`, `/biler/[bil]`, `/finansiering`, `/saelg-din-bil`, `/om-os`, `/kontakt`,
-`/book-proevetur`, `/guides`, `/faq`, `/biler/maerke|type|braendstof/...`, juridiske sider, `sitemap.xml`, `robots.txt`, `llms.txt`.
+`/handelsbetingelser`, `/privatlivspolitik`, `/cookies`, `sitemap.xml`, `robots.txt`.
 Tekster: `app/lib/i18n/da.ts` og `en.ts`.
 
 ## Admin (`/admin`)

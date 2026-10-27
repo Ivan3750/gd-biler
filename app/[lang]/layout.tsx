@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { geistMono, geistSans } from "@/app/fonts";
 import { Header } from "@/app/components/Header";
 import { Footer } from "@/app/components/Footer";
-import { BackToTop } from "@/app/components/BackToTop";
 import { JsonLd } from "@/app/components/JsonLd";
 import { MobileBar } from "@/app/components/MobileBar";
 import { getDict, href, isLang, LANGS, bilingual } from "@/app/lib/i18n";
@@ -115,7 +114,6 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
           {children}
         </main>
         <Footer lang={lang} settings={settings} dict={dict} address={addressLine(settings)} />
-        <BackToTop label={dict.backToTop} />
         <MobileBar lang={lang} phone={settings.phone} text={dict.mobileBar} />
         <JsonLd data={structuredData} />
         <JsonLd data={websiteData} />

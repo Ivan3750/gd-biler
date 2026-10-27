@@ -2,7 +2,7 @@ import { randomBytes } from "crypto";
 import { readJson, withLock, writeJson } from "./store";
 import type { Lang } from "./i18n";
 
-export const LEAD_TYPES = ["contact", "car", "sell", "finance", "testdrive"] as const;
+export const LEAD_TYPES = ["contact", "car", "sell", "finance"] as const;
 export type LeadType = (typeof LEAD_TYPES)[number];
 export type LeadStatus = "new" | "handled";
 

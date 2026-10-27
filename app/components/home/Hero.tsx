@@ -31,7 +31,7 @@ export function Hero({ lang, dict, title, subtitle, brands, bodies, currency }: 
           <Link href={href(lang, "/biler")} className={btnOnNavy}>
             {dict.common.seeCars}
           </Link>
-          <Link href={href(lang, "/book-proevetur")} className={btnOutlineOnNavy}>
+          <Link href={href(lang, "/kontakt")} className={btnOutlineOnNavy}>
             {dict.home.book}
           </Link>
         </div>

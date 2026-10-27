@@ -282,7 +282,6 @@ export const en: Dict = {
       phone: "The phone number does not look right.",
       message: "Please write a message of at least 10 characters.",
       consent: "You must accept that we store your details.",
-      date: "Choose a date today or later (within the next 4 months).",
       tooMany: "You have sent many messages. Please wait a moment and try again.",
       generic: "Something went wrong. Please try again, or call us.",
       fields: "Please fill in the fields marked with *.",

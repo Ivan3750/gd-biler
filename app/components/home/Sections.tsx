@@ -227,25 +227,6 @@ export function Areas({ lang, dict }: { lang: Lang; dict: Dict }) {
   );
 }
 
-export function CategoryChips({ lang, dict, bodies, fuels }: { lang: Lang; dict: Dict; bodies: string[]; fuels: string[] }) {
-  const chip = "rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-secondary";
-  if (bodies.length + fuels.length === 0) return null;
-  return (
-    <div className="mb-8 flex flex-wrap gap-2" aria-label={dict.category.browse}>
-      {bodies.map((b) => (
-        <Link key={b} href={href(lang, `/biler/type/${slugify(b)}`)} className={chip}>
-          {dict.body[b]}
-        </Link>
-      ))}
-      {fuels.map((f) => (
-        <Link key={f} href={href(lang, `/biler/braendstof/${slugify(f)}`)} className={chip}>
-          {dict.fuel[f]}
-        </Link>
-      ))}
-    </div>
-  );
-}
-
 export function BrandChips({ lang, brands, label }: { lang: Lang; brands: string[]; label: string }) {
   if (brands.length === 0) return null;
   return (

@@ -3,7 +3,6 @@ import { formatNumber } from "./format";
 import { getDict, href, LANGS } from "./i18n";
 import { infoLinks, legalPaths, mainLinks, afterLinks } from "./nav";
 import { addressLine, getSettings } from "./settings";
-import { getGuides } from "./guides";
 import { SITE_URL } from "./site";
 import { fillTokens } from "./text";
 
@@ -61,9 +60,6 @@ export async function buildLlmsTxt(full: boolean): Promise<string> {
   for (const l of infoLinks) {
     out.push(`- [${en.info.items[l.key]} / ${da.info.items[l.key]}](${abs(l.path)}) · [EN](${abs(l.path, "en")})`);
   }
-  out.push(``);
-  out.push(`## Guides`);
-  for (const g of getGuides("en")) out.push(`- [${g.title}](${abs(`/guides/${g.slug}`, "en")}): ${g.description}`);
   out.push(``);
   out.push(`## Policies`);
   for (const p of legalPaths) out.push(`- ${abs(p)} · ${abs(p, "en")}`);

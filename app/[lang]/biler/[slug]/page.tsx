@@ -141,11 +141,6 @@ export default async function CarPage({ params }: PageProps<"/[lang]/biler/[slug
               <a href={telHref(settings.phone)} className={btnPrimary}>
                 <Phone size={16} aria-hidden /> {settings.phone}
               </a>
-              {car.status === "available" && (
-                <Link href={`${href(lang, "/book-proevetur")}?car=${car.id}`} className={btnSecondary}>
-                  {dict.book.carButton}
-                </Link>
-              )}
               {car.status !== "sold" && (
                 <Link href={`${href(lang, "/finansiering")}?price=${car.price}`} className={btnSecondary}>
                   {t.financing}

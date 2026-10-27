@@ -10,11 +10,9 @@ export const afterLinks = [
 ] as const;
 
 export const infoLinks = [
-  { key: "book", path: "/book-proevetur" },
   { key: "howToBuy", path: "/saadan-koeber-du" },
   { key: "warranty", path: "/garanti-og-service" },
   { key: "delivery", path: "/levering" },
-  { key: "guides", path: "/guides" },
   { key: "faq", path: "/faq" },
   { key: "reviews", path: "/anmeldelser" },
   { key: "local", path: "/bilforhandler-horsens" },

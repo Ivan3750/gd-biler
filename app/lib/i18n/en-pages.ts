@@ -9,8 +9,6 @@ export const enPages: typeof daPages = {
       delivery: "Delivery",
       faq: "Questions and answers",
       reviews: "Reviews",
-      guides: "Guides",
-      book: "Book a test drive",
       local: "Car dealer in Horsens",
     },
   },
@@ -254,8 +252,6 @@ export const enPages: typeof daPages = {
     copy: "Copy link",
   },
 
-  backToTop: "Back to top",
-
   mobileBar: { call: "Call", write: "Write", cars: "Cars" },
 
   returns: {
@@ -352,48 +348,5 @@ export const enPages: typeof daPages = {
     factsTitle: "Facts about GD Biler",
     facts: { name: "Name", cvr: "CVR", address: "Address", hours: "Open" },
     openEveryDay: "Every day",
-  },
-
-  guidesPage: {
-    metaTitle: "Guides for buying and selling a car",
-    metaDescription: "Good advice for buying a used car, financing a car and selling your car. Checklists and guides from GD Biler in Horsens.",
-    title: "Guides",
-    lead: "Good advice for buying, financing and selling a car.",
-    read: "Read the guide",
-    updated: "Updated",
-    ctaTitle: "Ready to find your car?",
-    ctaText: "See our cars, or book a test drive.",
-  },
-
-  book: {
-    metaTitle: "Book a test drive",
-    metaDescription: "Book a test drive at GD Biler in Horsens. Choose a car and a time, and we will have the car ready for you.",
-    title: "Book a test drive",
-    lead: "Choose a car and a time and we will have the car ready. We confirm the time by phone or email.",
-    car: "Car",
-    anyCar: "Not chosen yet",
-    date: "Preferred date",
-    time: "Preferred time",
-    times: ["Morning", "Afternoon", "Not sure yet"],
-    messageLabel: "Anything we should know?",
-    messagePlaceholder: "E.g. questions you have, or if you want to see more cars",
-    bring: "Remember to bring your driving licence.",
-    carButton: "Book a test drive",
-  },
-
-  category: {
-    metaTitle: (name: string) => `${name} for sale in Horsens`,
-    metaDescription: (name: string, n: number) => `See ${n} cars: ${name.toLowerCase()} for sale at GD Biler in Horsens. Prices, year, mileage and finance.`,
-    title: (name: string) => `${name} for sale`,
-    lead: (name: string) => `Here are all the cars in the ${name.toLowerCase()} category that we have in stock right now.`,
-    intro: (name: string) =>
-      `Looking for ${name.toLowerCase()}? At GD Biler in Horsens we inspect the cars and prepare them so they are ready to drive. You can finance the car and have it delivered.`,
-    types: "Body type",
-    fuels: "Fuel",
-    browse: "Browse by type",
-    crumbType: "Type",
-    crumbFuel: "Fuel",
-    bodyNames: { Sedan: "Used saloons", SUV: "Used SUVs", Stationcar: "Used estate cars", Coupe: "Used coupés", Hatchback: "Used hatchbacks", Cabriolet: "Used convertibles", Van: "Used vans" } as Record<string, string>,
-    fuelNames: { Benzin: "Used petrol cars", Diesel: "Used diesel cars", Hybrid: "Used hybrid cars", El: "Used electric cars" } as Record<string, string>,
   },
 };
