@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { requireAdmin } from "@/app/lib/auth";
 import { getCar } from "@/app/lib/cars";
-import { CarForm } from "../CarForm";
+import { CarForm } from "../../CarForm";
 
 export default async function EditCarPage({ params }: { params: Promise<{ id: string }> }) {
   await requireAdmin();

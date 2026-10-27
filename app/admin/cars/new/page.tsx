@@ -1,5 +1,5 @@
 import { requireAdmin } from "@/app/lib/auth";
-import { CarForm } from "../CarForm";
+import { CarForm } from "../../CarForm";
 
 export default async function NewCarPage() {
   await requireAdmin();

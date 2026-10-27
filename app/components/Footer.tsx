@@ -1,59 +1,52 @@
-/* import { Facebook, Instagram, Linkedin } from "lucide-react";
- */import { Logo } from "./Logo";
+import { getDict, localePath } from "@/app/lib/i18n";
+import { getSettings, telHref } from "@/app/lib/settings";
+import { getImages } from "@/app/lib/images";
 
-export function Footer() {
+import { Logo } from "./Logo";
+
+export async function Footer() {
+  const [{ lang, t }, s, images] = await Promise.all([getDict(), getSettings(), getImages()]);
+  const f = t.footer;
+  const p = (path: string) => localePath(lang, path);
+
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-primary texture-light text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 lg:py-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           <div className="col-span-2">
-            <Logo variant="light" />
-            <p className="mt-5 text-sm text-white/60 max-w-xs leading-relaxed">
-              Bilforhandler i Horsens med fokus på kvalitet, finansiering og service.
-            </p>
-         {/*    <div className="mt-6 flex gap-3">
-              {[Facebook, Instagram, Linkedin].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/5 hover:bg-white/15 transition-colors"
-                  aria-label="Social"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
-            </div> */}
+            <Logo variant="light" src={images.logo} />
+            <p className="mt-5 text-sm text-white/60 max-w-xs leading-relaxed">{f.tagline}</p>
           </div>
 
           <FooterCol
-            title="Menu"
+            title={f.menu}
             links={[
-              ["Biler", "/new"],
-              ["Finansiering", "/new"],
-              ["Værksted", "/new"],
-              ["Om os", "/new"],
-              ["Kontakt", "/new"],    
+              [t.nav.cars, p("/biler")],
+              [t.nav.sell, p("/saelg-din-bil")],
+              [t.nav.workshop, p("/vaerksted")],
+              [t.nav.about, p("/om-os")],
+              [t.nav.contact, p("/kontakt")],
             ]}
           />
           <FooterCol
-            title="Kontakt"
+            title={f.contact}
             links={[
-              ["Langmarksvej 36A", "#"],
-              ["8700 Horsens", "#"],
-              ["+45 50 23 71 15", "tel:+4550237115"],
-              ["kontakt@gdbiler.dk", "mailto:kontakt@gdbiler.dk"],
+              [s.street, p("/kontakt")],
+              [`${s.zip} ${s.city}`, p("/kontakt")],
+              [s.phone, telHref(s.phone)],
+              [s.email, `mailto:${s.email}`],
             ]}
           />
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-4 justify-between text-xs text-white/50">
           <div className="flex gap-6">
-          <span>© {new Date().getFullYear()} GD Biler I/S. Alle rettigheder forbeholdes.</span>
-           <span>CVR: 44366452</span>
+            <span>© {new Date().getFullYear()} {s.legalName}. {f.rights}</span>
+            <span>CVR: {s.cvr}</span>
           </div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white">Handelsbetingelser</a>
-            <a href="#" className="hover:text-white">Privatlivspolitik</a>
+            <a href="#" className="hover:text-white">{f.terms}</a>
+            <a href="#" className="hover:text-white">{f.privacy}</a>
           </div>
         </div>
       </div>

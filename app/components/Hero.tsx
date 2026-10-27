@@ -1,15 +1,19 @@
 import { Search, ChevronRight, Calendar, ChevronDown } from "lucide-react";
-import heroImg from "@/app/assets/hero.jpg";
+import { getImages } from "@/app/lib/images";
+import { BODY_TYPES, PRICE_STEPS, listPublishedCars } from "@/app/lib/cars";
+import { formatNumber, getDict, localePath } from "@/app/lib/i18n";
+import { Lines } from "./Lines";
 
-const brands = ["Alle mærker", "Audi", "BMW", "Mercedes", "Volkswagen", "Tesla", "Volvo"];
-const bodyTypes = ["Alle typer", "Sedan", "SUV", "Stationcar", "Coupe"];
-const prices = ["Alle priser", "< 150.000", "150-300.000", "300-500.000", "> 500.000"];
+export async function Hero() {
+  const [{ lang, t }, cars, images] = await Promise.all([getDict(), listPublishedCars(), getImages()]);
+  const h = t.hero;
+  const brands = [...new Set(cars.map((c) => c.brand))].sort();
+  const opt = (v: string, label: string) => ({ value: v, label });
 
-export function Hero() {
   return (
     <section id="top" className="relative min-h-[100svh] w-full overflow-hidden bg-navy text-white">
       <img
-        src={heroImg.src}
+        src={images.hero}
         alt=""
         width={1920}
         height={1280}
@@ -27,23 +31,21 @@ export function Hero() {
         <div className="max-w-3xl animate-fade-up">
           <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-white/90">
             <span className="h-1.5 w-1.5 rounded-full bg-white" />
-            Bilforhandler · Horsens
+            {h.badge}
           </span>
           <h1 className="mt-6 text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-            Find din næste bil
+            {h.title[0]}
             <br />
-            <span className="text-white/70">hos GD Biler</span>
+            <span className="text-white/70">{h.title[1]}</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-white/75 leading-relaxed">
-            Brugte kvalitetsbiler med fokus på tryghed og god service
-          </p>
+          <p className="mt-6 max-w-xl text-lg text-white/75 leading-relaxed">{h.text}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="#cars"
               className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-primary transition-all hover:scale-[1.02] hover:shadow-elevated"
             >
-              Se biler
+              {h.seeCars}
               <ChevronRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
@@ -51,41 +53,65 @@ export function Hero() {
               className="inline-flex items-center gap-2 rounded-full glass px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/15 transition-all"
             >
               <Calendar size={15} />
-              Book tid
+              {h.book}
             </a>
           </div>
         </div>
 
         {/* Floating search */}
-        <div className="mt-12 lg:mt-16 animate-fade-up" style={{ animationDelay: "200ms" }}>
+        <form action={localePath(lang, "/biler")} className="mt-12 lg:mt-16 animate-fade-up" style={{ animationDelay: "200ms" }}>
           <div className="glass rounded-2xl p-3 sm:p-4 shadow-elevated max-w-4xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
-              <SearchField label="Mærke" options={brands} />
-              <SearchField label="Type" options={bodyTypes} />
-              <SearchField label="Pris" options={prices} />
+              <SearchField
+                name="brand"
+                label={h.brand}
+                options={[opt("", h.allBrands), ...brands.map((b) => opt(b, b))]}
+              />
+              <SearchField
+                name="body"
+                label={h.type}
+                options={[opt("", h.allTypes), ...BODY_TYPES.map((b) => opt(b, t.cars.body[b]))]}
+              />
+              <SearchField
+                name="maxPrice"
+                label={h.price}
+                options={[
+                  opt("", h.allPrices),
+                  ...PRICE_STEPS.map((p) => opt(String(p), `${h.upTo} ${formatNumber(p, lang)} €`)),
+                ]}
+              />
               <button className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-primary font-semibold py-4 transition-all hover:bg-white/90">
-                <Search size={16} /> Søg biler
+                <Search size={16} /> {h.search}
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </section>
   );
 }
 
-function SearchField({ label, options }: { label: string; options: string[] }) {
+function SearchField({
+  name,
+  label,
+  options,
+}: {
+  name: string;
+  label: string;
+  options: { value: string; label: string }[];
+}) {
   return (
     <label className="group relative flex flex-col rounded-xl bg-white/5 px-4 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
       <span className="text-[10px] uppercase tracking-[0.18em] text-white/60">{label}</span>
       <div className="relative flex items-center mt-0.5">
         <select
+          name={name}
           className="w-full bg-transparent text-white text-sm font-medium outline-none appearance-none cursor-pointer pr-5"
-          defaultValue={options[0]}
+          defaultValue=""
         >
           {options.map((o) => (
-            <option key={o} value={o} className="bg-navy text-white">
-              {o}
+            <option key={o.value} value={o.value} className="bg-navy text-white">
+              {o.label}
             </option>
           ))}
         </select>

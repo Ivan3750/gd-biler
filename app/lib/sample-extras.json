@@ -1,0 +1,233 @@
+{
+  "seed-audi": {
+    "bodyType": "Sedan",
+    "gearbox": "Automatisk",
+    "drive": "Firhjulstræk",
+    "powerHp": 367,
+    "kmPerL": 45,
+    "color": "Grå",
+    "doors": 4,
+    "seats": 5,
+    "owners": 1,
+    "firstRegistration": "06/2021",
+    "equipment": [
+      "Quattro firhjulstræk",
+      "Plug-in hybrid",
+      "LED-forlygter",
+      "Læderindtræk",
+      "Navigation",
+      "Bakkamera",
+      "Adaptiv fartpilot",
+      "Opvarmede sæder"
+    ],
+    "equipmentEn": [
+      "Quattro all-wheel drive",
+      "Plug-in hybrid",
+      "LED headlights",
+      "Leather upholstery",
+      "Navigation",
+      "Reversing camera",
+      "Adaptive cruise control",
+      "Heated seats"
+    ],
+    "description": "Velholdt Audi A6 55 TFSI e quattro fra 2021 med plug-in hybrid-drift og firhjulstræk. Bilen kombinerer en kraftig benzinmotor med en elmotor, så du kan køre rolig og stille i byen og have masser af kraft på motorvejen.\n\nInteriøret er i flot stand med læderindtræk, opvarmede sæder og et moderne infotainmentsystem med navigation. Adaptiv fartpilot og bakkamera gør hverdagen og de lange ture mere afslappede.\n\nBilen er gennemgået og serviceret hos os, og den leveres klar til kørsel med 3 måneders garanti. Kom forbi og prøv den.",
+    "descriptionEn": "Well-kept 2021 Audi A6 55 TFSI e quattro with plug-in hybrid drive and all-wheel drive. The car combines a powerful petrol engine with an electric motor, so you can drive quietly in town and still have plenty of power on the motorway.\n\nThe interior is in great condition with leather upholstery, heated seats and a modern infotainment system with navigation. Adaptive cruise control and a reversing camera make everyday driving and long trips more relaxed.\n\nThe car has been inspected and serviced by us, and it is delivered ready to drive with a 3-month warranty. Come by and try it.",
+    "images": [
+      "/cars/example-audi.jpg",
+      "/cars/example-mercedes.jpg",
+      "/cars/example-vw.jpg"
+    ]
+  },
+  "seed-bmw-1": {
+    "bodyType": "Sedan",
+    "gearbox": "Automatisk",
+    "drive": "Baghjulstræk",
+    "powerHp": 292,
+    "kmPerL": 52,
+    "color": "Hvid",
+    "doors": 4,
+    "seats": 5,
+    "owners": 1,
+    "firstRegistration": "03/2022",
+    "equipment": [
+      "Plug-in hybrid",
+      "LED-forlygter",
+      "Navigation",
+      "Bakkamera",
+      "Fartpilot",
+      "Klimaanlæg",
+      "Sportssæder",
+      "Parkeringssensorer"
+    ],
+    "equipmentEn": [
+      "Plug-in hybrid",
+      "LED headlights",
+      "Navigation",
+      "Reversing camera",
+      "Cruise control",
+      "Climate control",
+      "Sport seats",
+      "Parking sensors"
+    ],
+    "description": "BMW 330e fra 2022 i hvid med plug-in hybrid. Den giver den sporty BMW-kørsel, du kender, men med et markant lavere forbrug i hverdagen, fordi du kan køre mange af dine daglige ture på el.\n\nBilen har sportssæder, LED-forlygter, klimaanlæg og navigation, og den er udstyret med parkeringssensorer og bakkamera, så det er nemt at holde styr på pladsen.\n\nVi har gennemgået bilen grundigt og klargjort den, så du kan sætte dig ind og køre videre. Alle papirer er i orden, og handlen er enkel og gennemsigtig.",
+    "descriptionEn": "2022 BMW 330e in white with plug-in hybrid drive. It gives you the sporty BMW driving feel you know, but with much lower everyday consumption, because many of your daily trips can be driven on electric power.\n\nThe car has sport seats, LED headlights, climate control and navigation, and it comes with parking sensors and a reversing camera, so it is easy to keep track of the space around you.\n\nWe have inspected the car thoroughly and prepared it, so you can get in and drive away. All the paperwork is in order, and the deal is simple and transparent.",
+    "images": [
+      "/cars/example-bmw.jpg",
+      "/cars/bmw-2.jpg",
+      "/cars/bmw-3.jpg"
+    ]
+  },
+  "seed-bmw-2": {
+    "images": [
+      "/cars/bmw-3.jpg",
+      "/cars/bmw-4.jpg"
+    ],
+    "bodyType": "Sedan",
+    "gearbox": "Automatisk",
+    "drive": "Baghjulstræk",
+    "powerHp": 190,
+    "kmPerL": 20.8,
+    "color": "Sort",
+    "doors": 4,
+    "seats": 5,
+    "owners": 1,
+    "firstRegistration": "02/2024",
+    "equipment": [
+      "Steptronic automatgear",
+      "LED-forlygter",
+      "Læderindtræk",
+      "Navigation",
+      "Bakkamera",
+      "Adaptiv fartpilot",
+      "Opvarmede sæder",
+      "Trådløs telefonopladning"
+    ],
+    "equipmentEn": [
+      "Steptronic automatic gearbox",
+      "LED headlights",
+      "Leather upholstery",
+      "Navigation",
+      "Reversing camera",
+      "Adaptive cruise control",
+      "Heated seats",
+      "Wireless phone charging"
+    ],
+    "description": "Næsten ny BMW 520d Steptronic fra 2024 i sort. Dieselmotoren er økonomisk og stærk, og automatgearet gør bilen behagelig både i bytrafik og på lange ture.\n\nKabinen er rummelig og lækker med læderindtræk, opvarmede sæder og trådløs telefonopladning. Adaptiv fartpilot, navigation og bakkamera er med som standard i denne bil.\n\nBilen har kun haft én ejer og er serviceret og klargjort hos GD Biler. Du får en ærlig bil uden skjulte overraskelser og med 3 måneders garanti.",
+    "descriptionEn": "Almost-new 2024 BMW 520d Steptronic in black. The diesel engine is economical and strong, and the automatic gearbox makes the car comfortable in city traffic as well as on long trips.\n\nThe cabin is spacious and refined with leather upholstery, heated seats and wireless phone charging. Adaptive cruise control, navigation and a reversing camera are included in this car.\n\nThe car has had only one owner and has been serviced and prepared by GD Biler. You get an honest car with no hidden surprises and a 3-month warranty."
+  },
+  "seed-bmw-3": {
+    "images": [
+      "/cars/bmw-2.jpg",
+      "/cars/bmw-4.jpg"
+    ],
+    "bodyType": "Sedan",
+    "gearbox": "Automatisk",
+    "drive": "Baghjulstræk",
+    "powerHp": 190,
+    "kmPerL": 20.8,
+    "color": "Grå",
+    "doors": 4,
+    "seats": 5,
+    "owners": 1,
+    "firstRegistration": "03/2024",
+    "equipment": [
+      "Steptronic automatgear",
+      "LED-forlygter",
+      "Navigation",
+      "Bakkamera",
+      "Fartpilot",
+      "Klimaanlæg",
+      "Parkeringssensorer",
+      "Elektrisk bagklap"
+    ],
+    "equipmentEn": [
+      "Steptronic automatic gearbox",
+      "LED headlights",
+      "Navigation",
+      "Reversing camera",
+      "Cruise control",
+      "Climate control",
+      "Parking sensors",
+      "Electric tailgate"
+    ],
+    "description": "BMW 520d Steptronic fra 2024 i grå med lavt kilometertal for årgangen. En rummelig og økonomisk forretningsbil, der også passer perfekt til familien.\n\nBilen har LED-forlygter, navigation, klimaanlæg og elektrisk bagklap. Parkeringssensorer og bakkamera gør det nemt at parkere, og fartpiloten gør motorvejsturene mere afslappede.\n\nVi har serviceret bilen og gennemgået den, før den kom til salg. Den er klar til kørsel, og du får 3 måneders garanti.",
+    "descriptionEn": "2024 BMW 520d Steptronic in grey with low mileage for its year. A spacious and economical executive car that also suits the family perfectly.\n\nThe car has LED headlights, navigation, climate control and an electric tailgate. Parking sensors and a reversing camera make parking easy, and cruise control makes motorway trips more relaxed.\n\nWe have serviced the car and inspected it before it went on sale. It is ready to drive, and you get a 3-month warranty."
+  },
+  "seed-bmw-4": {
+    "images": [
+      "/cars/bmw-2.jpg",
+      "/cars/bmw-3.jpg"
+    ],
+    "bodyType": "Sedan",
+    "gearbox": "Automatisk",
+    "drive": "Baghjulstræk",
+    "powerHp": 190,
+    "kmPerL": 20.8,
+    "color": "Blå",
+    "doors": 4,
+    "seats": 5,
+    "owners": 2,
+    "firstRegistration": "01/2024",
+    "equipment": [
+      "Steptronic automatgear",
+      "LED-forlygter",
+      "Navigation",
+      "Bakkamera",
+      "Fartpilot",
+      "Klimaanlæg",
+      "Parkeringssensorer",
+      "Opvarmede sæder"
+    ],
+    "equipmentEn": [
+      "Steptronic automatic gearbox",
+      "LED headlights",
+      "Navigation",
+      "Reversing camera",
+      "Cruise control",
+      "Climate control",
+      "Parking sensors",
+      "Heated seats"
+    ],
+    "description": "BMW 520d Steptronic fra 2024 i blå. Bilen er rummelig, økonomisk og komfortabel, og den er klar til at tage hele familien med på langtur.\n\nUdstyret omfatter LED-forlygter, navigation, klimaanlæg, opvarmede sæder, parkeringssensorer og bakkamera. Steptronic-gearet gør kørslen blød og afslappet.\n\nBilen har haft to ejere og er gennemgået og serviceret hos os. Vi hjælper gerne med finansiering og aftaler en prøvetur, når det passer dig.",
+    "descriptionEn": "2024 BMW 520d Steptronic in blue. The car is spacious, economical and comfortable, and ready to take the whole family on a long trip.\n\nEquipment includes LED headlights, navigation, climate control, heated seats, parking sensors and a reversing camera. The Steptronic gearbox makes driving smooth and relaxed.\n\nThe car has had two owners and has been inspected and serviced by us. We are happy to help with financing and arrange a test drive whenever it suits you."
+  },
+  "seed-lexus": {
+    "bodyType": "SUV",
+    "gearbox": "Automatisk",
+    "drive": "Firhjulstræk",
+    "powerHp": 184,
+    "kmPerL": 17.5,
+    "color": "Sølv",
+    "doors": 5,
+    "seats": 5,
+    "owners": 1,
+    "firstRegistration": "05/2024",
+    "equipment": [
+      "Firhjulstræk",
+      "LED-forlygter",
+      "Læderindtræk",
+      "Navigation",
+      "Bakkamera",
+      "Adaptiv fartpilot",
+      "Opvarmede sæder",
+      "Elektrisk bagklap"
+    ],
+    "equipmentEn": [
+      "All-wheel drive",
+      "LED headlights",
+      "Leather upholstery",
+      "Navigation",
+      "Reversing camera",
+      "Adaptive cruise control",
+      "Heated seats",
+      "Electric tailgate"
+    ],
+    "description": "Komfortabel Lexus SUV fra 2024 i sølv med firhjulstræk og automatgear. Bilen er kendt for sin høje kvalitet, stille kabine og sikre vejgreb i alt slags vejr.\n\nDu får læderindtræk, opvarmede sæder, navigation, adaptiv fartpilot og elektrisk bagklap. Der er god plads til både passagerer og bagage, så den passer til både hverdag og ferie.\n\nBilen er gennemgået, klargjort og klar til kørsel. Du får en ærlig handel og 3 måneders garanti.",
+    "descriptionEn": "Comfortable 2024 Lexus SUV in silver with all-wheel drive and automatic gearbox. The car is known for its high build quality, quiet cabin and secure grip in all kinds of weather.\n\nYou get leather upholstery, heated seats, navigation, adaptive cruise control and an electric tailgate. There is plenty of room for passengers and luggage, so it suits both everyday life and holidays.\n\nThe car has been inspected, prepared and is ready to drive. You get an honest deal and a 3-month warranty.",
+    "images": [
+      "/cars/example-tesla.jpg",
+      "/cars/example-volvo.jpg",
+      "/cars/example-vw.jpg"
+    ]
+  }
+}

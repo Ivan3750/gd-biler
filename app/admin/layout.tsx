@@ -1,35 +1,31 @@
 import type { Metadata } from "next";
 import { isAdmin } from "@/app/lib/auth";
-import { logoutAction } from "./actions";
+import { listMessages } from "@/app/lib/messages";
+import { AdminNav } from "./AdminNav";
 
 export const metadata: Metadata = {
-  title: "Admin | GD Biler",
+  title: "Admin",
   robots: { index: false, follow: false },
 };
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const loggedIn = await isAdmin();
+  if (!(await isAdmin())) {
+    // Login screen: no navigation, just the card.
+    return (
+      <div className="texture-dark flex min-h-screen items-center justify-center bg-secondary p-6 text-foreground">
+        {children}
+      </div>
+    );
+  }
+
+  const unread = (await listMessages()).filter((m) => !m.read).length;
 
   return (
-    <div className="min-h-screen bg-secondary text-foreground">
-      <header className="border-b border-border bg-background">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <a href="/admin" className="font-semibold">
-            GD Biler <span className="font-normal text-muted-foreground">· Admin</span>
-          </a>
-          <div className="flex items-center gap-5 text-sm">
-            <a href="/" className="text-muted-foreground hover:text-foreground">
-              Se hjemmesiden
-            </a>
-            {loggedIn && (
-              <form action={logoutAction}>
-                <button className="font-medium hover:underline">Log ud</button>
-              </form>
-            )}
-          </div>
-        </div>
-      </header>
-      <main className="mx-auto max-w-5xl px-6 py-10">{children}</main>
+    <div className="min-h-screen bg-secondary text-foreground lg:flex">
+      <AdminNav unread={unread} />
+      <main className="min-w-0 flex-1 px-5 py-8 lg:px-10 lg:py-10">
+        <div className="mx-auto max-w-5xl">{children}</div>
+      </main>
     </div>
   );
 }

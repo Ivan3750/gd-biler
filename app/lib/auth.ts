@@ -5,7 +5,8 @@ import { createHash, createHmac, timingSafeEqual } from "crypto";
 const COOKIE = "admin_session";
 const MAX_AGE = 60 * 60 * 24 * 7;
 
-// TEMP: test fallback so the server works without env vars. Set ADMIN_PASSWORD in production.
+// TEMP: test fallbacks so the server works without env vars. Set ADMIN_USER and ADMIN_PASSWORD in production.
+const username = () => process.env.ADMIN_USER || "admin";
 const password = () => process.env.ADMIN_PASSWORD || "12345678";
 
 export const adminConfigured = () => password().length >= 8;
@@ -15,10 +16,13 @@ const sha = (s: string) => createHash("sha256").update(s).digest();
 const safeEqual = (a: string, b: string) => timingSafeEqual(sha(a), sha(b));
 
 // Derived from the password, so changing ADMIN_PASSWORD logs everyone out.
-const token = () => createHmac("sha256", password()).update("gd-biler-admin").digest("hex");
+const token = () => createHmac("sha256", password()).update(`gd-biler-admin:${username()}`).digest("hex");
 
-export function checkPassword(input: string) {
-  return adminConfigured() && safeEqual(input, password());
+export function checkLogin(user: string, pass: string) {
+  // Both comparisons always run so timing does not reveal which one was wrong.
+  const userOk = safeEqual(user.trim().toLowerCase(), username().toLowerCase());
+  const passOk = safeEqual(pass, password());
+  return adminConfigured() && userOk && passOk;
 }
 
 export async function createSession() {

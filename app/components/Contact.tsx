@@ -1,59 +1,58 @@
 import { MapPin, Phone, Clock, ArrowUpRight } from "lucide-react";
+import { getDict } from "@/app/lib/i18n";
+import { getSettings, mapsEmbedUrl, telHref } from "@/app/lib/settings";
+import { Lines } from "./Lines";
 
-const hours = [
-  ["Mandag – Fredag", "09:00 – 17:00"],
-  ["Lørdag", "9:00 – 17:00"],
-  ["Søndag", "9:00 – 17:00"],
-];
+export async function Contact() {
+  const [{ t }, s] = await Promise.all([getDict(), getSettings()]);
+  const c = t.contact;
 
-export function Contact() {
   return (
-    <section id="contact" className="bg-navy text-navy-foreground py-24 lg:py-32">
+    <section id="contact" className="bg-navy texture-light text-navy-foreground py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="max-w-2xl mb-14">
           <span className="text-xs uppercase tracking-[0.2em] text-white/60 font-medium">
-            Kontakt
+            {c.label}
           </span>
           <h2 className="mt-4 text-balance text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.02]">
-            Kom forbi
-            <br /> showroom.
+            <Lines lines={c.title} />
           </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
           <div className="lg:col-span-2 space-y-6">
-            <InfoBlock icon={MapPin} title="Adresse">
-              Langmarksvej 36A
+            <InfoBlock icon={MapPin} title={c.address}>
+              {s.street}
               <br />
-              8700 Horsens
+              {s.zip} {s.city}
             </InfoBlock>
-            <InfoBlock icon={Phone} title="Telefon">
-              <a href="tel:+4550237115" className="hover:underline">
-                +45 50 23 71 15
+            <InfoBlock icon={Phone} title={c.phone}>
+              <a href={telHref(s.phone)} className="hover:underline">
+                {s.phone}
               </a>
             </InfoBlock>
-            <InfoBlock icon={Clock} title="Åbningstider">
+            <InfoBlock icon={Clock} title={c.hoursTitle}>
               <ul className="space-y-1">
-                {hours.map(([d, t]) => (
+                {c.hours.map(([d, h]) => (
                   <li key={d} className="flex justify-between gap-6 text-white/80">
                     <span>{d}</span>
-                    <span className="text-white">{t}</span>
+                    <span className="text-white">{h}</span>
                   </li>
                 ))}
               </ul>
             </InfoBlock>
             <a
-              href="mailto:kontakt@gdbiler.dk"
+              href={`mailto:${s.email}`}
               className="inline-flex items-center gap-2 rounded-full bg-white text-primary px-7 py-3.5 text-sm font-semibold transition-all hover:scale-[1.02]"
             >
-              Kontakt os <ArrowUpRight size={16} />
+              {c.cta} <ArrowUpRight size={16} />
             </a>
           </div>
 
           <div className="lg:col-span-3 overflow-hidden rounded-3xl border border-white/10 min-h-[400px] bg-white/5">
             <iframe
-              title="GD Biler kort"
-              src="https://www.google.com/maps?q=Langmarksvej+36A,+8700+Horsens&output=embed"
+              title={c.map}
+              src={mapsEmbedUrl(s)}
               className="h-full w-full min-h-[400px] grayscale-[40%] contrast-110"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

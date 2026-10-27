@@ -1,7 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
-import aboutImg from "@/app/assets/about.jpg";
+import { getImages } from "@/app/lib/images";
+import { getDict, localePath } from "@/app/lib/i18n";
+import { Lines } from "./Lines";
 
-export function About() {
+export async function About() {
+  const [{ lang, t }, images] = await Promise.all([getDict(), getImages()]);
+  const a = t.about;
+
   return (
     <section id="about" className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
@@ -9,8 +14,8 @@ export function About() {
           <div className="relative">
             <div className="overflow-hidden rounded-3xl">
               <img
-                src={aboutImg.src}
-                alt="GD Biler showroom"
+                src={images.about}
+                alt={a.imgAlt}
                 width={1280}
                 height={960}
                 loading="lazy"
@@ -19,38 +24,29 @@ export function About() {
             </div>
             <div className="absolute -bottom-6 -right-6 hidden sm:flex flex-col rounded-2xl bg-navy text-navy-foreground p-6 shadow-elevated w-48">
               <span className="text-4xl font-semibold">3+</span>
-              <span className="text-sm text-white/70 mt-1">år i branchen</span>
+              <span className="text-sm text-white/70 mt-1">{a.years}</span>
             </div>
           </div>
 
           <div>
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">
-  Om GD Biler
-</span>
-
-<h2 className="mt-4 text-balance text-4xl sm:text-5xl font-semibold leading-[1.05]">
-  Kvalitetsbiler i Horsens.
-  <br />
-  Med fokus på tryghed.
-</h2>
-
-<p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-  GD Biler er en lokal bilforhandler i Horsens, der arbejder med nøje udvalgte
-  brugte biler. Vi fokuserer på ærlig rådgivning, gennemsigtige handler og en
-  enkel købsproces, så du kan føle dig tryg gennem hele forløbet – fra første
-  kig til aflevering af nøgler.
-</p>
+            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">
+              {a.label}
+            </span>
+            <h2 className="mt-4 text-balance text-4xl sm:text-5xl font-semibold leading-[1.05]">
+              <Lines lines={a.title} />
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">{a.text}</p>
             <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-border pt-8">
-              <Stat value="100+" label="Solgte biler" />
-              <Stat value="98%" label="Tilfredse kunder" />
-              <Stat value="3 mdr" label="Garanti" />
-<Stat value="Klar til kørsel" label="Alle biler" />           </dl>
+              {a.stats.map(([value, label]) => (
+                <Stat key={label} value={value} label={label} />
+              ))}
+            </dl>
 
             <a
-              href="#contact"
+              href={localePath(lang, "/om-os")}
               className="mt-10 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-7 py-3.5 text-sm font-semibold transition-all hover:scale-[1.02]"
             >
-              Kontakt os <ArrowUpRight size={16} />
+              {t.nav.about} <ArrowUpRight size={16} />
             </a>
           </div>
         </div>
@@ -59,7 +55,7 @@ export function About() {
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
+export function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div>
       <dt className="text-3xl font-semibold tracking-tight">{value}</dt>
