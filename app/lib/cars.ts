@@ -71,7 +71,8 @@ export async function listCars(): Promise<Car[]> {
   } catch (e) {
     if ((e as NodeJS.ErrnoException).code !== "ENOENT") throw e;
     cars = SEED;
-    await write(cars);
+    // A read-only filesystem must not take the whole site down.
+    await write(cars).catch(() => {});
   }
   return [...cars].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }

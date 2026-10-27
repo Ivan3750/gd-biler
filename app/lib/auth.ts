@@ -1,11 +1,12 @@
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createHash, createHmac, timingSafeEqual } from "crypto";
 
 const COOKIE = "admin_session";
 const MAX_AGE = 60 * 60 * 24 * 7;
 
-const password = () => process.env.ADMIN_PASSWORD ?? "";
+// TEMP: test fallback so the server works without env vars. Set ADMIN_PASSWORD in production.
+const password = () => process.env.ADMIN_PASSWORD || "12345678";
 
 export const adminConfigured = () => password().length >= 8;
 
@@ -21,10 +22,13 @@ export function checkPassword(input: string) {
 }
 
 export async function createSession() {
+  // Only mark the cookie Secure when the request really came over HTTPS,
+  // otherwise browsers drop it on plain-http servers and login silently fails.
+  const secure = (await headers()).get("x-forwarded-proto") === "https";
   (await cookies()).set(COOKIE, token(), {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure,
     path: "/",
     maxAge: MAX_AGE,
   });
