@@ -21,13 +21,13 @@ export function Hero({ lang, dict, title, subtitle, brands, bodies, currency }: 
   const t = dict.home.search;
   return (
     <section className="relative overflow-hidden bg-navy text-navy-foreground">
-      <Image src={heroImg} alt="" fill priority sizes="100vw" className="object-cover opacity-35" />
+      <Image src={heroImg} alt="" fill priority sizes="100vw" className="anim-fade object-cover opacity-35" />
       <div className={`${container} relative py-20 lg:py-28`}>
-        <div className="mb-5 h-0.5 w-10 bg-brand" aria-hidden />
-        <h1 className="max-w-3xl text-balance text-4xl font-bold sm:text-5xl">{title}</h1>
-        <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/80">{subtitle}</p>
+        <div className="anim-rise mb-5 h-0.5 w-10 bg-brand" aria-hidden />
+        <h1 className="anim-rise max-w-3xl text-balance text-4xl font-bold sm:text-5xl">{title}</h1>
+        <p className="anim-rise delay-1 mt-5 max-w-xl text-lg leading-relaxed text-white/80">{subtitle}</p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="anim-rise delay-2 mt-8 flex flex-wrap gap-3">
           <Link href={href(lang, "/biler")} className={btnOnNavy}>
             {dict.common.seeCars}
           </Link>
@@ -36,7 +36,7 @@ export function Hero({ lang, dict, title, subtitle, brands, bodies, currency }: 
           </Link>
         </div>
 
-        <form action={href(lang, "/biler")} className="mt-12 grid max-w-4xl gap-3 rounded-md bg-background p-4 text-foreground sm:grid-cols-2 lg:grid-cols-4">
+        <form action={href(lang, "/biler")} className="anim-rise delay-3 mt-12 grid max-w-4xl gap-3 rounded-md bg-background p-4 text-foreground sm:grid-cols-2 lg:grid-cols-4">
           <label className="text-sm font-medium">
             {t.brand}
             <select name="brand" defaultValue="" className={input}>

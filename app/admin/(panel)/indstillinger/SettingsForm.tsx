@@ -34,6 +34,16 @@ export function SettingsForm({ settings: s }: { settings: Settings }) {
         </div>
       </Card>
 
+      <Card title="Placering (til søgemaskiner)">
+        <p className="mb-4 text-sm text-muted-foreground">
+          Valgfrit. Find koordinaterne i Google Maps (højreklik på showroomet) og skriv dem her, fx 55.8607 og 9.8503. Lad felterne stå tomme, hvis du er i tvivl – forkerte koordinater er værre end ingen.
+        </p>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Text name="lat" label="Breddegrad" value={s.lat} required={false} />
+          <Text name="lng" label="Længdegrad" value={s.lng} required={false} />
+        </div>
+      </Card>
+
       <Card title="Åbningstider">
         <ul className="space-y-3">
           {s.hours.map((h, i) => (

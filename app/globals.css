@@ -118,3 +118,58 @@
     scroll-behavior: auto;
   }
 }
+
+/* Motion: short and calm, and off for people who ask for less movement. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes drop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+.anim-rise { animation: rise 0.7s ease-out both; }
+.anim-fade { animation: fade 0.9s ease-out both; }
+.anim-drop { animation: drop 0.2s ease-out both; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+
+button:active:not(:disabled),
+a.press:active {
+  transform: translateY(1px);
+}
+
+/* FAQ accordions open smoothly where the browser supports it. */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size 0.3s ease, content-visibility 0.3s ease allow-discrete;
+}
+details[open]::details-content { block-size: auto; }
+@supports (interpolate-size: allow-keywords) {
+  :root { interpolate-size: allow-keywords; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .anim-rise, .anim-fade, .anim-drop { animation: none; }
+  details::details-content { transition: none; }
+}

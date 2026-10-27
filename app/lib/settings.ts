@@ -28,6 +28,8 @@ export const DEFAULT_SETTINGS: Settings = {
   notice: { da: "", en: "" },
   facebook: "",
   instagram: "",
+  lat: "",
+  lng: "",
   currency: "€",
   financeRate: 6.5,
 };

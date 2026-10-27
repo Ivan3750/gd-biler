@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import { geistMono, geistSans } from "@/app/fonts";
 import { Header } from "@/app/components/Header";
 import { Footer } from "@/app/components/Footer";
+import { JsonLd } from "@/app/components/JsonLd";
+import { MobileBar } from "@/app/components/MobileBar";
 import { getDict, href, isLang, LANGS, bilingual } from "@/app/lib/i18n";
 import { getSettings, addressLine } from "@/app/lib/settings";
-import { alternates, jsonLd, OG_LOCALE, SITE_URL } from "@/app/lib/site";
+import { alternates, OG_LOCALE, SITE_URL } from "@/app/lib/site";
 import "../globals.css";
 
 // Listings and settings are read from disk, so nothing here can be built ahead of time.
@@ -26,6 +28,13 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     description,
     alternates: alternates(lang, "/"),
     openGraph: { siteName: "GD Biler", locale: OG_LOCALE[lang], type: "website", description },
+    // Regional hints for search engines: Region Midtjylland, Horsens.
+    other: {
+      "geo.region": "DK-82",
+      "geo.placename": settings.city,
+      ...(settings.lat && settings.lng ? { "geo.position": `${settings.lat};${settings.lng}`, ICBM: `${settings.lat}, ${settings.lng}` } : {}),
+    },
+    formatDetection: { telephone: true },
   };
 }
 
@@ -38,8 +47,20 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "AutoDealer",
+    "@id": `${SITE_URL}/#dealer`,
     name: "GD Biler",
+    legalName: settings.company,
+    description: bilingual(lang, settings.heroSubtitle),
     url: `${SITE_URL}${href(lang, "/")}`,
+    logo: `${SITE_URL}/logo.jpg`,
+    image: `${SITE_URL}${href(lang, "/")}opengraph-image`,
+    inLanguage: lang,
+    currenciesAccepted: settings.currency === "€" ? "EUR" : "DKK",
+    paymentAccepted: ["Cash", "Bank transfer", "Financing"],
+    ...(settings.lat && settings.lng ? { geo: { "@type": "GeoCoordinates", latitude: Number(settings.lat), longitude: Number(settings.lng) } } : {}),
+    areaServed: ["Horsens", "Aarhus", "Vejle", "Skanderborg", "Silkeborg", "Hedensted", "Odder", "Juelsminde"].map((name) => ({ "@type": "City", name })),
+    sameAs: [settings.facebook, settings.instagram].filter(Boolean),
+    knowsLanguage: ["da", "en"],
     telephone: settings.phone,
     email: settings.email,
     vatID: settings.cvr,
@@ -64,21 +85,38 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
     ),
   };
 
+  const websiteData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    name: "GD Biler",
+    url: `${SITE_URL}${href(lang, "/")}`,
+    inLanguage: lang,
+    publisher: { "@id": `${SITE_URL}/#dealer` },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${SITE_URL}${href(lang, "/biler")}?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <html lang={dict.htmlLang} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col pb-[calc(3.75rem+env(safe-area-inset-bottom))] lg:pb-0">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
         >
           {dict.skipToContent}
         </a>
-        <Header lang={lang} settings={settings} nav={dict.nav} />
+        <Header lang={lang} settings={settings} nav={dict.nav} info={dict.info} />
         <main id="main" className="flex-1">
           {children}
         </main>
         <Footer lang={lang} settings={settings} dict={dict} address={addressLine(settings)} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(structuredData) }} />
+        <MobileBar lang={lang} phone={settings.phone} text={dict.mobileBar} />
+        <JsonLd data={structuredData} />
+        <JsonLd data={websiteData} />
       </body>
     </html>
   );

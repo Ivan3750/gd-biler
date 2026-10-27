@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Breadcrumbs } from "@/app/components/Breadcrumbs";
 import { Hours } from "@/app/components/Hours";
 import { LeadForm } from "@/app/components/LeadForm";
 import { MapEmbed } from "@/app/components/MapEmbed";
@@ -23,7 +24,9 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/kontakt
 
   return (
     <>
-      <PageHeader title={t.title} lead={t.lead} />
+      <PageHeader title={t.title} lead={t.lead}>
+        <Breadcrumbs lang={lang} home={dict.common.home} items={[{ name: dict.nav.contact }]} />
+      </PageHeader>
       <Section>
         <div className="grid gap-10 lg:grid-cols-5">
           <div className="space-y-7 lg:col-span-2">
@@ -45,6 +48,17 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/kontakt
             <Info icon={Clock} title={dict.common.openHours}>
               <Hours settings={settings} dict={dict} />
             </Info>
+            <div className="rounded-md bg-secondary p-5">
+              <h2 className="font-bold">{dict.contactExtra.helpTitle}</h2>
+              <ul className="mt-3 list-disc space-y-1.5 pl-5 text-muted-foreground">
+                {dict.contactExtra.helpItems.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm text-muted-foreground">
+                <strong className="text-foreground">{dict.contactExtra.replyTitle}:</strong> {dict.contactExtra.replyText}
+              </p>
+            </div>
           </div>
 
           <div className="lg:col-span-3">

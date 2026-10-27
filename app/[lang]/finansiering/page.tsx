@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/app/components/Breadcrumbs";
 import { FinanceCalculator } from "@/app/components/FinanceCalculator";
+import { Faq } from "@/app/components/Faq";
 import { PageHeader, Section, SectionHeading } from "@/app/components/Section";
 import { getDict, href } from "@/app/lib/i18n";
 import { resolveLang } from "@/app/lib/i18n/server";
@@ -23,7 +25,9 @@ export default async function FinancePage({ params, searchParams }: PageProps<"/
 
   return (
     <>
-      <PageHeader title={t.title} lead={t.lead} />
+      <PageHeader title={t.title} lead={t.lead}>
+        <Breadcrumbs lang={lang} home={dict.common.home} items={[{ name: dict.nav.finance }]} />
+      </PageHeader>
       <Section>
         <FinanceCalculator
           lang={lang}
@@ -40,14 +44,22 @@ export default async function FinancePage({ params, searchParams }: PageProps<"/
       </Section>
 
       <Section tone="gray">
-        <SectionHeading title={t.faq.title} />
-        <div className="max-w-3xl divide-y divide-border border-y border-border bg-background">
-          {t.faq.items.map((f) => (
-            <details key={f.q} className="group px-5 py-4">
-              <summary className="cursor-pointer list-none font-bold marker:hidden">{f.q}</summary>
-              <p className="mt-3 leading-relaxed text-muted-foreground">{f.a}</p>
-            </details>
+        <SectionHeading title={dict.financeExtra.howTitle} />
+        <ol className="grid gap-6 md:grid-cols-3">
+          {dict.financeExtra.how.map((s, i) => (
+            <li key={s.title} className="rounded-md border border-border bg-background p-6">
+              <span className="border-l-2 border-brand pl-3 text-sm font-bold text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="mt-3 text-lg font-bold">{s.title}</h3>
+              <p className="mt-2 leading-relaxed text-muted-foreground">{s.text}</p>
+            </li>
           ))}
+        </ol>
+      </Section>
+
+      <Section>
+        <SectionHeading title={t.faq.title} />
+        <div className="max-w-3xl">
+          <Faq items={t.faq.items.map((f) => ({ q: f.q, a: f.a }))} />
         </div>
       </Section>
     </>

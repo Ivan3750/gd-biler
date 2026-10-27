@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Banknote, ShieldCheck, Star, Truck } from "lucide-react";
+import { ArrowRight, Banknote, Car, Landmark, ShieldCheck, Star, Truck } from "lucide-react";
 import aboutImg from "@/app/assets/about.jpg";
+import { slugify } from "@/app/lib/format";
 import { bilingual, href, type Dict, type Lang } from "@/app/lib/i18n";
 import { REVIEWS } from "@/app/lib/reviews";
 import { addressLine, telHref, type Settings } from "@/app/lib/settings-shared";
+import { CountUp } from "../CountUp";
 import { Hours } from "../Hours";
 import { MapEmbed } from "../MapEmbed";
 import { Section, SectionHeading } from "../Section";
@@ -38,7 +40,9 @@ export function StatsList({ dict }: { dict: Dict }) {
       {dict.home.stats.map((s) => (
         <div key={s.label} className="border-l-2 border-brand pl-4">
           <dt className="sr-only">{s.label}</dt>
-          <dd className="text-3xl font-bold">{s.value}</dd>
+          <dd className="text-3xl font-bold">
+            <CountUp value={s.value} />
+          </dd>
           <dd className="mt-1 text-sm text-muted-foreground">{s.label}</dd>
         </div>
       ))}
@@ -124,7 +128,15 @@ export function Testimonials({ lang, dict }: { lang: Lang; dict: Dict }) {
           </span>
         </p>
       </div>
-      <div className="grid gap-6 md:grid-cols-2">
+      <ReviewGrid lang={lang} />
+    </Section>
+  );
+}
+
+
+export function ReviewGrid({ lang }: { lang: Lang }) {
+  return (
+    <div className="grid gap-6 md:grid-cols-2">
         {REVIEWS.map((r) => (
           <figure key={r.name} className="flex flex-col rounded-md border border-border bg-background p-7">
             <blockquote className="text-lg leading-relaxed">“{r.text[lang]}”</blockquote>
@@ -138,7 +150,6 @@ export function Testimonials({ lang, dict }: { lang: Lang; dict: Dict }) {
           </figure>
         ))}
       </div>
-    </Section>
   );
 }
 
@@ -172,5 +183,60 @@ export function VisitUs({ dict, settings }: { dict: Dict; settings: Settings }) 
         </div>
       </div>
     </Section>
+  );
+}
+
+const trustIcons = [ShieldCheck, Landmark, Truck];
+
+export function TrustStrip({ lang, dict }: { lang: Lang; dict: Dict }) {
+  return (
+    <Section tone="gray" className="!py-10 lg:!py-12">
+      <div className="grid gap-6 md:grid-cols-3">
+        {dict.trust.items.map((item, i) => {
+          const Icon = trustIcons[i];
+          return (
+            <Link key={item.title} href={href(lang, item.path)} className="group flex gap-4 rounded-md border border-border bg-background p-5 hover:border-foreground/40">
+              <Icon size={24} strokeWidth={1.75} className="mt-0.5 shrink-0 text-navy" aria-hidden />
+              <span>
+                <span className="block font-bold">{item.title}</span>
+                <span className="mt-1 block text-muted-foreground">{item.text}</span>
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </Section>
+  );
+}
+
+export function Areas({ lang, dict }: { lang: Lang; dict: Dict }) {
+  return (
+    <Section tone="gray">
+      <SectionHeading title={dict.areas.title} lead={dict.areas.text} />
+      <ul className="flex flex-wrap gap-3">
+        {dict.areas.list.map((c) => (
+          <li key={c} className="rounded-md border border-border bg-background px-4 py-2 font-medium">
+            {c}
+          </li>
+        ))}
+      </ul>
+      <Link href={href(lang, "/bilforhandler-horsens")} className={`${btnSecondary} mt-8`}>
+        {dict.areas.link} <ArrowRight size={16} aria-hidden />
+      </Link>
+    </Section>
+  );
+}
+
+export function BrandChips({ lang, brands, label }: { lang: Lang; brands: string[]; label: string }) {
+  if (brands.length === 0) return null;
+  return (
+    <div className="mb-8 flex flex-wrap items-center gap-2" aria-label={label}>
+      <Car size={16} className="text-muted-foreground" aria-hidden />
+      {brands.map((b) => (
+        <Link key={b} href={href(lang, `/biler/maerke/${slugify(b)}`)} className="rounded-md border border-border px-3 py-1.5 text-sm font-medium hover:bg-secondary">
+          {b}
+        </Link>
+      ))}
+    </div>
   );
 }
