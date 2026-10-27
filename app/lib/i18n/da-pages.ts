@@ -8,6 +8,8 @@ export const daPages = {
       delivery: "Levering",
       faq: "Spørgsmål og svar",
       reviews: "Anmeldelser",
+      guides: "Guides",
+      book: "Book prøvetur",
       local: "Bilforhandler i Horsens",
     },
   },
@@ -246,6 +248,8 @@ export const daPages = {
     copy: "Kopiér link",
   },
 
+  backToTop: "Til toppen",
+
   mobileBar: { call: "Ring", write: "Skriv", cars: "Biler" },
 
   returns: {
@@ -342,5 +346,48 @@ export const daPages = {
     factsTitle: "Fakta om GD Biler",
     facts: { name: "Navn", cvr: "CVR", address: "Adresse", hours: "Åbent" },
     openEveryDay: "Hver dag",
+  },
+
+  guidesPage: {
+    metaTitle: "Guides til køb og salg af bil",
+    metaDescription: "Gode råd til at købe brugt bil, finansiere en bil og sælge din bil. Tjeklister og guides fra GD Biler i Horsens.",
+    title: "Guides",
+    lead: "Gode råd til at købe, finansiere og sælge bil.",
+    read: "Læs guiden",
+    updated: "Opdateret",
+    ctaTitle: "Klar til at finde din bil?",
+    ctaText: "Se vores biler, eller book en prøvetur.",
+  },
+
+  book: {
+    metaTitle: "Book prøvetur",
+    metaDescription: "Book en prøvetur hos GD Biler i Horsens. Vælg bil og tidspunkt, så gør vi bilen klar til dig.",
+    title: "Book prøvetur",
+    lead: "Vælg en bil og et tidspunkt, så gør vi bilen klar. Vi bekræfter tiden på telefon eller e-mail.",
+    car: "Bil",
+    anyCar: "Ikke valgt endnu",
+    date: "Ønsket dato",
+    time: "Ønsket tidspunkt",
+    times: ["Formiddag", "Eftermiddag", "Ved ikke endnu"],
+    messageLabel: "Noget vi skal vide?",
+    messagePlaceholder: "Fx hvilke spørgsmål du har, eller om du vil se flere biler",
+    bring: "Husk kørekortet, når du kommer.",
+    carButton: "Book prøvetur",
+  },
+
+  category: {
+    metaTitle: (name: string) => `${name} til salg i Horsens`,
+    metaDescription: (name: string, n: number) => `Se ${n} biler: ${name.toLowerCase()} til salg hos GD Biler i Horsens. Priser, årgang, kilometer og finansiering.`,
+    title: (name: string) => `${name} til salg`,
+    lead: (name: string) => `Her er alle biler i kategorien ${name.toLowerCase()}, vi har på lager lige nu.`,
+    intro: (name: string) =>
+      `Leder du efter ${name.toLowerCase()}? Hos GD Biler i Horsens gennemgår vi bilerne og klargør dem, så de er klar til kørsel. Du kan finansiere bilen og få den leveret.`,
+    types: "Biltype",
+    fuels: "Brændstof",
+    browse: "Se efter type",
+    crumbType: "Type",
+    crumbFuel: "Brændstof",
+    bodyNames: { Sedan: "Brugt sedan", SUV: "Brugt SUV", Stationcar: "Brugt stationcar", Coupe: "Brugt coupé", Hatchback: "Brugt hatchback", Cabriolet: "Brugt cabriolet", Van: "Brugt van" } as Record<string, string>,
+    fuelNames: { Benzin: "Brugte benzinbiler", Diesel: "Brugte dieselbiler", Hybrid: "Brugte hybridbiler", El: "Brugte elbiler" } as Record<string, string>,
   },
 };

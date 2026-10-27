@@ -5,4 +5,5 @@ export const LEAD_LABEL: Record<LeadType, string> = {
   car: "Bil",
   sell: "Salg af bil",
   finance: "Finansiering",
+  testdrive: "Prøvetur",
 };

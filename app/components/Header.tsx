@@ -13,7 +13,9 @@ import { btnPrimary, container } from "./ui";
 export function Header({ lang, settings, nav, info }: { lang: Lang; settings: Settings; nav: Dict["nav"]; info: Dict["info"] }) {
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const lastY = useRef(0);
   const pathname = usePathname();
   // The browser URL carries /en for English; the rest is the page path.
   const path = pathname.replace(/^\/en(?=\/|$)/, "") || "/";
@@ -29,6 +31,17 @@ export function Header({ lang, settings, nav, info }: { lang: Lang; settings: Se
     }, 0);
     return () => clearTimeout(t);
   }, [pathname]);
+  // On phones the header slides away while reading and returns as soon as you scroll up.
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      setHidden(y > 160 && y > lastY.current + 4);
+      if (y < lastY.current - 4 || y <= 160) setHidden(false);
+      lastY.current = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenu(false);
     const onClick = (e: MouseEvent) => menuRef.current && !menuRef.current.contains(e.target as Node) && setMenu(false);
@@ -59,7 +72,11 @@ export function Header({ lang, settings, nav, info }: { lang: Lang; settings: Se
   return (
     <>
       {notice && <p className="bg-secondary px-6 py-2 text-center text-sm">{notice}</p>}
-      <header className="sticky top-0 z-40 border-b border-border bg-background">
+      <header
+        className={`sticky top-0 z-40 border-b border-border bg-background transition-transform duration-300 lg:translate-y-0 ${
+          hidden && !open ? "-translate-y-full" : ""
+        }`}
+      >
         <div className="bg-navy text-navy-foreground">
           <div className={`${container} flex items-center justify-between py-1.5 text-xs`}>
             <span className="hidden text-white/75 sm:inline">

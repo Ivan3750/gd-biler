@@ -281,6 +281,7 @@ export const da = {
       phone: "Telefonnummeret ser ikke rigtigt ud.",
       message: "Skriv en besked på mindst 10 tegn.",
       consent: "Du skal acceptere, at vi gemmer dine oplysninger.",
+      date: "Vælg en dato i dag eller senere (inden for de næste 4 måneder).",
       tooMany: "Du har sendt mange beskeder. Vent lidt og prøv igen.",
       generic: "Noget gik galt. Prøv igen, eller ring til os.",
       fields: "Udfyld felterne markeret med *.",
