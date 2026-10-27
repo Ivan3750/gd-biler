@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { UPLOAD_DIR } from "@/app/lib/store";
+import { UPLOAD_DIR } from "@/app/lib/cars";
 
 const TYPES: Record<string, string> = { jpg: "image/jpeg", png: "image/png", webp: "image/webp" };
 

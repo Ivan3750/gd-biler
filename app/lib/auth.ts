@@ -5,12 +5,8 @@ import { createHash, createHmac, timingSafeEqual } from "crypto";
 const COOKIE = "admin_session";
 const MAX_AGE = 60 * 60 * 24 * 7;
 
-const FALLBACK = "12345678";
-
-// Test fallback so the server works without env vars. The admin dashboard warns while it is in use.
-const password = () => process.env.ADMIN_PASSWORD || FALLBACK;
-
-export const usingDefaultPassword = () => !process.env.ADMIN_PASSWORD;
+// TEMP: test fallback so the server works without env vars. Set ADMIN_PASSWORD in production.
+const password = () => process.env.ADMIN_PASSWORD || "12345678";
 
 export const adminConfigured = () => password().length >= 8;
 

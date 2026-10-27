@@ -45,6 +45,6 @@ Regel: `brand` må ikke bruges til store flader eller brødtekst.
 Dansk, direkte og som man siger det i samtale. Korte sætninger. Ingen salgsfraser.
 
 ## Admin
-`/admin` bruger de samme tokens, men er bevidst enkel: grå baggrund, hvide kort, `rounded-xl`, sidemenu.
+`/admin` bruger de samme tokens, men er bevidst enkel: grå baggrund, hvide kort, `rounded-xl`.
 Adgangskoden står i `ADMIN_PASSWORD` i `.env.local` (se `.env.example`).
-Data gemmes i `data/` (`cars.json`, `leads.json`, `settings.json`, `uploads/`), uden for git.
+Annoncer gemmes i `data/cars.json`, uploadede billeder i `data/uploads/` (begge uden for git).

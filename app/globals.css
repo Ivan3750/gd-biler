@@ -71,7 +71,7 @@
   --destructive-foreground: oklch(0.98 0 0);
 
   --border: oklch(0.92 0.005 250);
-  --input: oklch(0.84 0.005 250);
+  --input: oklch(0.92 0.005 250);
   --ring: oklch(0.22 0.05 260);
 
   /* Dark navy #0E2A47 */
@@ -82,6 +82,19 @@
   --brand: oklch(0.72 0.13 62);
   --brand-foreground: oklch(0.2 0.04 62);
 
+  --shadow-elevated: 0 30px 60px -30px oklch(0.27 0.06 254 / 0.35);
+  --shadow-soft: 0 8px 24px -8px oklch(0 0 0 / 0.12);
+}
+
+.dark {
+  --background: oklch(0.15 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.18 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --border: oklch(1 0 0 / 10%);
 }
 
 @layer base {
@@ -96,25 +109,86 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
   h1, h2, h3, h4 {
-    letter-spacing: -0.02em;
-    font-weight: 700;
-  }
-  :focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 2px;
+    letter-spacing: -0.025em;
+    font-weight: 600;
   }
 }
 
 @layer utilities {
+  .glass {
+    background-color: oklch(1 0 0 / 0.08);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid oklch(1 0 0 / 0.12);
+  }
+  .glass-dark {
+    background-color: oklch(0.15 0 0 / 0.6);
+    backdrop-filter: blur(16px);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
   .text-balance {
     text-wrap: balance;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-up { animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-in { animation: fade-in 0.8s ease-out both; }
+
+select {
+  color-scheme: dark;
+}
+
+select option {
+  background: var(--color-navy);
+  color: white;
+}select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  color: white;
+  border-radius: 16px;
+  padding: 12px 40px 12px 12px;
+}
+
+select option {
+  background: #0E2A47;
+  color: white;
+}
+
+/* Light select used on the inventory page (the global select is styled for dark backgrounds) */
+select.plain-select {
+  background: var(--background);
+  backdrop-filter: none;
+  color: var(--foreground);
+  color-scheme: light;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+select.plain-select option {
+  background: var(--background);
+  color: var(--foreground);
 }
