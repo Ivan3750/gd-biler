@@ -1,4 +1,3 @@
-import { Reveal } from "./Reveal";
 import { container } from "./ui";
 
 const tones = {
@@ -20,9 +19,7 @@ export function Section({
 }) {
   return (
     <section id={id} className={`${tones[tone]} py-16 lg:py-20 ${className}`}>
-      <div className={container}>
-        <Reveal>{children}</Reveal>
-      </div>
+      <div className={container}>{children}</div>
     </section>
   );
 }

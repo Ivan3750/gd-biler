@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Breadcrumbs } from "@/app/components/Breadcrumbs";
-import { Faq } from "@/app/components/Faq";
 import { LeadForm } from "@/app/components/LeadForm";
 import { PageHeader, Section, SectionHeading } from "@/app/components/Section";
 import { input } from "@/app/components/ui";
@@ -24,9 +22,7 @@ export default async function SellPage({ params }: PageProps<"/[lang]/saelg-din-
 
   return (
     <>
-      <PageHeader title={t.title} lead={t.lead}>
-        <Breadcrumbs lang={lang} home={dict.common.home} items={[{ name: dict.nav.sell }]} />
-      </PageHeader>
+      <PageHeader title={t.title} lead={t.lead} />
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-5">
@@ -79,25 +75,6 @@ export default async function SellPage({ params }: PageProps<"/[lang]/saelg-din-
               </div>
             </LeadForm>
           </div>
-        </div>
-      </Section>
-
-      <Section tone="gray">
-        <SectionHeading title={dict.sellExtra.whyTitle} />
-        <div className="grid gap-6 md:grid-cols-2">
-          {dict.sellExtra.why.map((w) => (
-            <div key={w.title} className="rounded-md border border-border bg-background p-6">
-              <h3 className="border-l-2 border-brand pl-3 text-lg font-bold">{w.title}</h3>
-              <p className="mt-2 leading-relaxed text-muted-foreground">{w.text}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section>
-        <SectionHeading title={dict.sellExtra.faqTitle} />
-        <div className="max-w-3xl">
-          <Faq items={dict.sellExtra.faq} />
         </div>
       </Section>
     </>

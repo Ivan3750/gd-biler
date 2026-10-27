@@ -29,9 +29,6 @@ export type Car = {
   images: string[];
   description: string;
   descriptionEn: string;
-  /** Equipment, one item per line. */
-  features: string;
-  featuresEn: string;
   status: CarStatus;
   published: boolean;
   createdAt: string;
@@ -62,8 +59,6 @@ const seed = (
   images: [`/cars/${image}`],
   description: "",
   descriptionEn: "",
-  features: "",
-  featuresEn: "",
   status: "available",
   published: true,
   createdAt: new Date(Date.UTC(2025, 0, 1) - order * 1000).toISOString(),
@@ -98,8 +93,6 @@ function normalize(raw: Record<string, unknown>): Car {
     images,
     description: r.description ?? "",
     descriptionEn: r.descriptionEn ?? "",
-    features: r.features ?? "",
-    featuresEn: r.featuresEn ?? "",
     status: r.status === "reserved" || r.status === "sold" ? r.status : "available",
     published: r.published !== false,
     createdAt: r.createdAt ?? new Date(0).toISOString(),

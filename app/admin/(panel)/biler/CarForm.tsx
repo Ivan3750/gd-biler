@@ -252,20 +252,6 @@ export function CarForm({ car }: { car?: Car }) {
         </div>
       </Card>
 
-      <Card title="Udstyr">
-        <p className="mb-4 text-sm text-muted-foreground">Ét udstyr pr. linje, fx «Adaptiv fartpilot». Vises som en liste på annoncen.</p>
-        <div className="grid gap-5 lg:grid-cols-2">
-          <label className="block text-sm font-medium">
-            Dansk
-            <textarea name="features" rows={6} maxLength={2000} defaultValue={v("features", car?.features)} className={field} />
-          </label>
-          <label className="block text-sm font-medium">
-            Engelsk <span className="font-normal text-muted-foreground">(tom = viser den danske liste)</span>
-            <textarea name="featuresEn" rows={6} maxLength={2000} defaultValue={v("featuresEn", car?.featuresEn)} className={field} />
-          </label>
-        </div>
-      </Card>
-
       <Card title="Visning">
         <div className="grid gap-5 sm:grid-cols-2">
           <label className="text-sm font-medium">

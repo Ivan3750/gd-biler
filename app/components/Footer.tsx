@@ -1,18 +1,23 @@
 import Link from "next/link";
 import { href, type Dict, type Lang } from "@/app/lib/i18n";
 import { telHref, type Settings } from "@/app/lib/settings-shared";
-import { afterLinks, infoLinks, mainLinks } from "@/app/lib/nav";
 import { Logo } from "./Logo";
 import { container } from "./ui";
 
-const menu = [...mainLinks, ...afterLinks];
+const menu = [
+  { key: "cars", path: "/biler" },
+  { key: "finance", path: "/finansiering" },
+  { key: "sell", path: "/saelg-din-bil" },
+  { key: "about", path: "/om-os" },
+  { key: "contact", path: "/kontakt" },
+] as const;
 
 export function Footer({ lang, settings, dict, address }: { lang: Lang; settings: Settings; dict: Dict; address: string }) {
   const linkClass = "text-sm text-white/80 hover:text-white";
   return (
     <footer className="bg-navy text-navy-foreground">
       <div className={`${container} py-16`}>
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Logo />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/70">{dict.footer.about}</p>
@@ -23,16 +28,6 @@ export function Footer({ lang, settings, dict, address }: { lang: Lang; settings
               <li key={key}>
                 <Link href={href(lang, path)} className={linkClass}>
                   {dict.nav[key]}
-                </Link>
-              </li>
-            ))}
-          </FooterCol>
-
-          <FooterCol title={dict.info.title}>
-            {infoLinks.map(({ key, path }) => (
-              <li key={key}>
-                <Link href={href(lang, path)} className={linkClass}>
-                  {dict.info.items[key]}
                 </Link>
               </li>
             ))}
@@ -87,9 +82,6 @@ export function Footer({ lang, settings, dict, address }: { lang: Lang; settings
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             <Link href={href(lang, "/handelsbetingelser")} className="hover:text-white">
               {dict.footer.legal.terms}
-            </Link>
-            <Link href={href(lang, "/reklamation-og-fortrydelse")} className="hover:text-white">
-              {dict.footer.legal.returns}
             </Link>
             <Link href={href(lang, "/privatlivspolitik")} className="hover:text-white">
               {dict.footer.legal.privacy}

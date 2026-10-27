@@ -30,10 +30,6 @@ Regel: `brand` må ikke bruges til store flader eller brødtekst.
 - Kanter (`border-border`) frem for skygger. Ingen hover-løft eller zoom.
 - Accent (`brand`): kun en tynd streg over/ved siden af tekstblokke og tal.
 
-## Bevægelse
-Kun rolig bevægelse: sektioner toner ind og glider få pixels op, når de kommer til syne, tal tæller op, menuer og FAQ åbner blødt.
-Ingen hover-løft eller zoom. Alt slås fra, når besøgende har valgt mindre bevægelse (`prefers-reduced-motion`).
-
 ## Layout
 - Container: `mx-auto max-w-6xl px-6 lg:px-10`.
 - Sektioner: `py-16 lg:py-20`, skiftevis hvid / `bg-secondary`.

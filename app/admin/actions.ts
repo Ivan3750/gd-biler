@@ -63,8 +63,6 @@ export async function saveCarAction(_: FormState, formData: FormData): Promise<F
   const color = text(formData, "color");
   const description = text(formData, "description");
   const descriptionEn = text(formData, "descriptionEn");
-  const features = String(formData.get("features") ?? "").trim();
-  const featuresEn = String(formData.get("featuresEn") ?? "").trim();
   const year = int(formData, "year");
   const km = int(formData, "km");
   const price = int(formData, "price");
@@ -84,7 +82,6 @@ export async function saveCarAction(_: FormState, formData: FormData): Promise<F
   if (color.length > 30) return fail("Farven er for lang.");
   if (hp !== undefined && (!Number.isInteger(hp) || hp < 1 || hp > 2000)) return fail("Hestekræfter er ikke gyldige.");
   if (description.length > 3000 || descriptionEn.length > 3000) return fail("Beskrivelsen er for lang (maks. 3000 tegn).");
-  if (features.length > 2000 || featuresEn.length > 2000) return fail("Udstyrslisten er for lang (maks. 2000 tegn).");
 
   // The form sends the final photo order: "u:<url>" for photos already on the listing, "n:<i>" for the i-th new file.
   const order = formData.getAll("order").map(String);
@@ -129,8 +126,6 @@ export async function saveCarAction(_: FormState, formData: FormData): Promise<F
     images,
     description,
     descriptionEn,
-    features,
-    featuresEn,
     status,
     published: formData.get("published") === "on",
     createdAt: existing?.createdAt ?? new Date().toISOString(),
@@ -223,15 +218,9 @@ export async function saveSettingsAction(_: FormState, formData: FormData): Prom
     notice: { da: t("noticeDa", 200), en: t("noticeEn", 200) },
     facebook: t("facebook", 300),
     instagram: t("instagram", 300),
-    lat: t("lat", 12),
-    lng: t("lng", 12),
     currency: t("currency", 6) || "€",
     financeRate: rate,
   };
-  const coord = /^-?\d{1,3}(\.\d{1,8})?$/;
-  if ((settings.lat || settings.lng) && !(coord.test(settings.lat) && coord.test(settings.lng))) {
-    return fail("Breddegrad og længdegrad skal være tal, fx 55.8607 og 9.8503 – eller begge tomme.");
-  }
   if (!settings.heroTitle.da || !settings.about.da) return fail("Overskrift og om-tekst på dansk skal udfyldes.");
 
   await saveSettings(settings);

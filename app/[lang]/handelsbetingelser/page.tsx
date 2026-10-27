@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Breadcrumbs } from "@/app/components/Breadcrumbs";
 import { LegalPage } from "@/app/components/LegalPage";
 import { getDict } from "@/app/lib/i18n";
 import { resolveLang } from "@/app/lib/i18n/server";
@@ -15,12 +14,5 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/handelsbet
 export default async function Page({ params }: PageProps<"/[lang]/handelsbetingelser">) {
   const lang = await resolveLang(params);
   const dict = getDict(lang);
-  return (
-    <LegalPage
-      doc={dict.legal.terms}
-      updatedLabel={dict.legal.updated}
-      settings={await getSettings()}
-      crumbs={<Breadcrumbs lang={lang} home={dict.common.home} items={[{ name: dict.legal.terms.title }]} />}
-    />
-  );
+  return <LegalPage doc={dict.legal.terms} updatedLabel={dict.legal.updated} settings={await getSettings()} />;
 }

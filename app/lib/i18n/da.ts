@@ -1,7 +1,4 @@
-import { daPages } from "./da-pages";
-
 export const da = {
-  ...daPages,
   siteName: "GD Biler",
   htmlLang: "da",
   skipToContent: "Gå til indhold",
@@ -115,7 +112,6 @@ export const da = {
     metaTitle: "Brugte biler til salg",
     metaDescription: "Se alle brugte biler til salg hos GD Biler i Horsens. Søg på mærke, brændstof, pris og årgang.",
     title: "Biler til salg",
-    intro: "Brugte biler fra GD Biler i Horsens. Alle biler er gennemgået og klargjort, og du kan finansiere dem, få dem leveret eller give din gamle bil i bytte.",
     count: (n: number) => (n === 1 ? "1 bil" : `${n} biler`),
     filters: {
       search: "Søg",
@@ -294,7 +290,7 @@ export const da = {
     hours: "Åbningstider",
     rights: "Alle rettigheder forbeholdes.",
     cvr: "CVR",
-    legal: { returns: "Reklamation", terms: "Handelsbetingelser", privacy: "Privatlivspolitik", cookies: "Cookies" },
+    legal: { terms: "Handelsbetingelser", privacy: "Privatlivspolitik", cookies: "Cookies" },
   },
 
 
@@ -344,18 +340,7 @@ export const da = {
           ],
         },
         {
-          h: "7. Reservation og byttebil",
-          p: [
-            "Du kan aftale at reservere en bil. Vilkårene for reservationen, fx frist og eventuelt depositum, aftales skriftligt.",
-            "Hvis du giver en bil i bytte, værdisætter vi den ud fra dens stand. Den endelige pris aftales, når vi har set bilen, og den skrives ind i købsaftalen.",
-          ],
-        },
-        {
-          h: "8. Virksomhedsoplysninger",
-          p: ["{company}, CVR {cvr}, {address}. Telefon {phone}, e-mail {email}."],
-        },
-        {
-          h: "9. Lovvalg",
+          h: "7. Lovvalg",
           p: ["Danske regler gælder for aftalen."],
         },
       ],
@@ -394,14 +379,7 @@ export const da = {
           ],
         },
         {
-          h: "6. Serverlogs og sikkerhed",
-          p: [
-            "Vores hostingleverandør kan midlertidigt gemme tekniske oplysninger som IP-adresse og tidspunkt i serverlogs, så vi kan sikre og fejlsøge hjemmesiden. Vi bruger dem ikke til at følge dig på tværs af sider.",
-            "Vi beskytter oplysningerne med adgangskontrol, og kun de medarbejdere, der behandler henvendelser, har adgang. Hjemmesiden bruger krypteret forbindelse (HTTPS).",
-          ],
-        },
-        {
-          h: "7. Dine rettigheder",
+          h: "6. Dine rettigheder",
           p: [
             "Du kan bede om indsigt i, rettelse eller sletning af dine oplysninger, og du kan trække dit samtykke tilbage når som helst. Du kan også gøre indsigelse og bede om at få dine oplysninger udleveret. Kontakt os på {email}.",
             "Hvis du er utilfreds med, hvordan vi behandler dine oplysninger, kan du klage til Datatilsynet, Carl Jacobsens Vej 35, 2500 Valby, datatilsynet.dk.",

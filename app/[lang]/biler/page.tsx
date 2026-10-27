@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Breadcrumbs } from "@/app/components/Breadcrumbs";
 import { CarGrid } from "@/app/components/CarCard";
-import { FilterPanel } from "@/app/components/FilterPanel";
-import { JsonLd } from "@/app/components/JsonLd";
-import { BrandChips } from "@/app/components/home/Sections";
 import { PageHeader, Section } from "@/app/components/Section";
 import { btnPrimary, btnSecondary, input } from "@/app/components/ui";
 import { distinct, filterCars, listPublicCars } from "@/app/lib/cars";
@@ -12,8 +8,7 @@ import { formatNumber } from "@/app/lib/format";
 import { getDict, href, type Lang } from "@/app/lib/i18n";
 import { resolveLang } from "@/app/lib/i18n/server";
 import { getSettings, telHref } from "@/app/lib/settings";
-import { pageMetadata, SITE_URL } from "@/app/lib/site";
-import { carPath } from "@/app/lib/cars";
+import { pageMetadata } from "@/app/lib/site";
 import { BODY_TYPES, FUELS, GEARBOXES, SORTS, type Sort } from "@/app/lib/vehicle";
 
 const PER_PAGE = 12;
@@ -73,12 +68,9 @@ export default async function CarsPage({ params, searchParams }: PageProps<"/[la
 
   return (
     <>
-      <PageHeader title={t.title} lead={t.intro}>
-        <Breadcrumbs lang={lang} home={dict.common.home} items={[{ name: dict.crumbs.cars }]} />
-      </PageHeader>
+      <PageHeader title={t.title} />
       <Section>
-        <FilterPanel label={t.filters.show} active={Object.entries(filters).filter(([k, v]) => k !== "sort" && v).length}>
-        <form method="get" action={href(lang, "/biler")}>
+        <form method="get" action={href(lang, "/biler")} className="mb-8 rounded-md border border-border bg-secondary p-4 sm:p-5">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <label className="text-sm font-medium">
               {t.filters.search}
@@ -151,9 +143,6 @@ export default async function CarsPage({ params, searchParams }: PageProps<"/[la
             )}
           </div>
         </form>
-        </FilterPanel>
-
-        <BrandChips lang={lang} brands={brands} label={t.filters.brand} />
 
         {all.length === 0 ? (
           <Empty lang={lang} message={t.noStock} hint="" phone={settings.phone} />
@@ -165,20 +154,6 @@ export default async function CarsPage({ params, searchParams }: PageProps<"/[la
               {t.count(result.length)}
             </p>
             <CarGrid cars={shown} lang={lang} dict={dict} currency={cur} />
-            <JsonLd
-              data={{
-                "@context": "https://schema.org",
-                "@type": "ItemList",
-                name: t.title,
-                numberOfItems: result.length,
-                itemListElement: shown.map((c, i) => ({
-                  "@type": "ListItem",
-                  position: (page - 1) * PER_PAGE + i + 1,
-                  url: `${SITE_URL}${href(lang, carPath(c))}`,
-                  name: `${c.brand} ${c.model} ${c.year}`,
-                })),
-              }}
-            />
             {pages > 1 && (
               <nav className="mt-10 flex items-center justify-between gap-4" aria-label={dict.common.page}>
                 {page > 1 ? (

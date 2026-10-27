@@ -19,9 +19,6 @@ export type Settings = {
   notice: Bilingual;
   facebook: string;
   instagram: string;
-  /** Optional map position, used for search engines only. Leave empty if unsure. */
-  lat: string;
-  lng: string;
   currency: string;
   /** Default interest rate in the finance calculator, percent per year. */
   financeRate: number;

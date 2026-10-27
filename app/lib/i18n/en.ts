@@ -1,8 +1,6 @@
 import type { Dict } from "./index";
-import { enPages } from "./en-pages";
 
 export const en: Dict = {
-  ...enPages,
   siteName: "GD Biler",
   htmlLang: "en",
   skipToContent: "Skip to content",
@@ -116,7 +114,6 @@ export const en: Dict = {
     metaTitle: "Used cars for sale",
     metaDescription: "Browse all used cars for sale at GD Biler in Horsens. Filter by make, fuel, price and year.",
     title: "Cars for sale",
-    intro: "Used cars from GD Biler in Horsens. Every car is inspected and prepared, and you can finance them, have them delivered or trade in your old car.",
     count: (n: number) => (n === 1 ? "1 car" : `${n} cars`),
     filters: {
       search: "Search",
@@ -295,7 +292,7 @@ export const en: Dict = {
     hours: "Opening hours",
     rights: "All rights reserved.",
     cvr: "CVR",
-    legal: { returns: "Complaints", terms: "Terms of sale", privacy: "Privacy policy", cookies: "Cookies" },
+    legal: { terms: "Terms of sale", privacy: "Privacy policy", cookies: "Cookies" },
   },
 
 
@@ -345,18 +342,7 @@ export const en: Dict = {
           ],
         },
         {
-          h: "7. Reservation and trade-in",
-          p: [
-            "You can agree to reserve a car. The terms of the reservation, such as the deadline and any deposit, are agreed in writing.",
-            "If you trade in a car, we value it based on its condition. The final price is agreed once we have seen the car, and it is written into the sales agreement.",
-          ],
-        },
-        {
-          h: "8. Company details",
-          p: ["{company}, CVR {cvr}, {address}. Phone {phone}, email {email}."],
-        },
-        {
-          h: "9. Governing law",
+          h: "7. Governing law",
           p: ["Danish law applies to the agreement."],
         },
       ],
@@ -395,14 +381,7 @@ export const en: Dict = {
           ],
         },
         {
-          h: "6. Server logs and security",
-          p: [
-            "Our hosting provider may temporarily store technical information such as IP address and time in server logs, so we can secure and troubleshoot the website. We do not use them to follow you across pages.",
-            "We protect the data with access control, and only staff who handle enquiries have access. The website uses an encrypted connection (HTTPS).",
-          ],
-        },
-        {
-          h: "7. Your rights",
+          h: "6. Your rights",
           p: [
             "You can ask for access to, correction of or deletion of your data, and you can withdraw your consent at any time. You can also object and ask for your data to be handed over. Contact us at {email}.",
             "If you are unhappy with how we process your data, you can complain to the Danish Data Protection Agency (Datatilsynet), Carl Jacobsens Vej 35, 2500 Valby, datatilsynet.dk.",
