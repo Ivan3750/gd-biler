@@ -88,7 +88,7 @@ export function businessJsonLd(lang: Lang, description: string, s: Settings) {
     image: absoluteUrl(DEFAULT_OG_IMAGE),
     logo: absoluteUrl(DEFAULT_OG_IMAGE),
     priceRange: "€€",
-    currenciesAccepted: "DKK, EUR",
+    currenciesAccepted: "DKK",
     paymentAccepted: "Cash, Bank transfer, Financing",
     knowsLanguage: ["da", "en"],
     geo: { "@type": "GeoCoordinates", latitude: GEO.lat, longitude: GEO.lng },

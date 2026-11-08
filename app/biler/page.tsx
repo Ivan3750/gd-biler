@@ -186,7 +186,7 @@ export default async function CatalogPage({ searchParams }: { searchParams: Sear
       <Header />
       <main>
         <FilterForm action={listPath}>
-          <section className="bg-navy texture-light text-navy-foreground pt-28 pb-10 lg:pt-32 lg:pb-12">
+          <section className="aurora bg-navy texture-light text-navy-foreground pt-28 pb-10 lg:pt-32 lg:pb-12">
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
               <div className="animate-fade-up">
                 <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl">

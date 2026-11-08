@@ -64,3 +64,9 @@ Siden er løftet til et mere moderne udtryk (afløser reglerne "ingen glas, inge
 - Biler uden billede viser `/cars/no-photo.svg`; biler uden pris viser "Ring for pris".
 - Ny bevægelse: `.quick-chip` (hover/tryk), `.animate-pop`, glidende scroll. Alt slås fra ved `prefers-reduced-motion`.
 - Annoncerne ligger som startdata i `app/lib/seed-cars.json` (billeder i `public/cars/`), så de også virker på Vercel.
+
+## Opdatering: priser, billeder og nummerplader
+- Priser vises i kr. (DKK) overalt (`formatPrice` i `app/lib/i18n.ts`). Klik på en pris kopierer den (`Price.tsx`), med en kort "Kopieret"-bekræftelse.
+- Billeder vises helt: `object-contain` oven på en sløret kopi af samme billede (`.photo-blur`), så hele bilen ses uanset format. Kortbilleder er 4:5, galleriet er kvadratisk.
+- Nummerplade (`Plate.tsx`): blå EU-stribe med stjerner, hævede tegn og et lysglimt ved hover. Vises på alle bilkort.
+- `.aurora`: langsomt bevægende farveglød bag den mørke banner på kataloget.

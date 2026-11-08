@@ -1,4 +1,4 @@
-import { Search, ChevronRight, Calendar, ChevronDown, CalendarDays, CarFront, Euro, Fuel, Tag, type LucideIcon } from "lucide-react";
+import { Search, ChevronRight, Calendar, ChevronDown, CalendarDays, CarFront, Banknote, Fuel, Tag, type LucideIcon } from "lucide-react";
 import { getImages } from "@/app/lib/images";
 import { BODY_TYPES, FUELS, PRICE_STEPS, listPublishedCars } from "@/app/lib/cars";
 import { formatNumber, getDict, localePath } from "@/app/lib/i18n";
@@ -86,12 +86,12 @@ export async function Hero() {
                 options={[opt("", ft.anyFuel), ...fuels.map((f) => opt(f, t.cars.fuel[f]))]}
               />
               <SearchField
-                icon={Euro}
+                icon={Banknote}
                 name="maxPrice"
                 label={h.price}
                 options={[
                   opt("", ft.anyPrice),
-                  ...PRICE_STEPS.map((p) => opt(String(p), `${h.upTo} ${formatNumber(p, lang)} €`)),
+                  ...PRICE_STEPS.map((p) => opt(String(p), `${h.upTo} ${formatNumber(p, lang)} kr.`)),
                 ]}
               />
               <SearchField

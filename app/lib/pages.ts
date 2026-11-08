@@ -227,7 +227,7 @@ const en: Pages = {
     figuresTitle: ["Clear promises,", "no small print."],
     figures: [
       ["3 mo", "Warranty", "Every car comes with a 3-month warranty."],
-      ["€0", "Hidden fees", "The price is the price. You know what you pay before we agree anything."],
+      ["0 DKK", "Hidden fees", "The price is the price. You know what you pay before we agree anything."],
       ["7 days", "Open weekly", "The showroom is open every day of the week, 09–17."],
       ["100+", "Cars sold", "Local and distant customers who drove home happy."],
     ] as [string, string, string][],

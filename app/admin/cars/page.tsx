@@ -42,7 +42,7 @@ export default async function AdminPage() {
                   </span>
                 </div>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  {car.year} · {formatNumber(car.km)} km · {car.fuel} · {formatNumber(car.price)} €
+                  {car.year} · {formatNumber(car.km)} km · {car.fuel} · {formatNumber(car.price)} kr.
                 </p>
               </div>
               <div className="flex items-center gap-4 text-sm">

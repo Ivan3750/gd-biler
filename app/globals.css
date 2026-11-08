@@ -308,30 +308,60 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 /* Danish registration plate */
 .plate {
-  display: inline-flex; align-items: stretch; overflow: hidden;
-  border-radius: 0.5rem; border: 2px solid oklch(0.2 0 0);
-  background: linear-gradient(180deg, oklch(1 0 0), oklch(0.96 0 0));
-  box-shadow: 0 1px 0 oklch(1 0 0) inset, 0 8px 20px -8px oklch(0 0 0 / 0.35);
-  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-  color: oklch(0.15 0 0);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative; display: inline-flex; align-items: stretch; overflow: hidden; isolation: isolate;
+  border-radius: 0.38em; padding: 0.09em; background: oklch(0.2 0 0);
+  box-shadow: 0 0.05em 0 oklch(1 0 0 / 0.5) inset, 0 0.5em 1em -0.35em oklch(0 0 0 / 0.5), 0 0.12em 0.25em oklch(0 0 0 / 0.18);
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif; color: oklch(0.14 0 0);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
 }
-.plate:hover { transform: scale(1.04) rotate(-0.6deg); }
+.plate > * { position: relative; z-index: 1; }
 .plate-eu {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
-  padding: 0 0.45em; background: oklch(0.42 0.16 262); color: white;
-  font-size: 0.55em; font-weight: 700; letter-spacing: 0.04em;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.12em;
+  padding: 0 0.5em; border-radius: 0.3em 0 0 0.3em; color: oklch(0.88 0.17 95);
+  background: linear-gradient(160deg, oklch(0.5 0.17 262), oklch(0.36 0.15 262));
+  box-shadow: inset -0.06em 0 0.1em oklch(0 0 0 / 0.25);
 }
-.plate-eu i {
-  display: block; width: 1.1em; height: 1.1em; border-radius: 9999px; border: 1px dotted oklch(0.88 0.17 95);
-}
+.plate-eu .plate-stars { width: 1.15em; height: 1.15em; }
+.plate-eu b { color: #fff; font-size: 0.5em; font-weight: 700; letter-spacing: 0.06em; line-height: 1; }
 .plate-no {
-  display: flex; align-items: center; padding: 0.2em 0.7em;
-  font-weight: 700; letter-spacing: 0.08em; white-space: nowrap; text-transform: uppercase;
+  display: flex; align-items: center; padding: 0.18em 0.75em; border-radius: 0 0.3em 0.3em 0;
+  background: linear-gradient(180deg, #fff, oklch(0.95 0.005 100));
+  font-weight: 700; letter-spacing: 0.1em; white-space: nowrap; text-transform: uppercase; line-height: 1.15;
+  text-shadow: 0 0.025em 0 oklch(1 0 0), 0 -0.015em 0 oklch(0 0 0 / 0.25);
+}
+.plate::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; width: 45%;
+  background: linear-gradient(100deg, transparent, oklch(1 0 0 / 0.55), transparent);
+  transform: translateX(-130%) skewX(-18deg);
+}
+.plate:hover { transform: translateY(-2px) scale(1.04) rotate(-0.5deg); }
+.plate:hover::after { animation: sheen 1s ease; }
+
+/* Price that copies on click */
+.price-copy { cursor: copy; }
+
+/* Photo frame: the whole photo is shown; the sides are filled with a blurred copy of it. */
+.photo-blur { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(28px) saturate(1.2); transform: scale(1.25); opacity: 0.75; }
+
+/* Slowly drifting colour glow behind dark sections */
+.aurora { position: relative; overflow: hidden; }
+.aurora::before, .aurora::after {
+  content: ""; position: absolute; z-index: 0; border-radius: 9999px; filter: blur(70px); pointer-events: none; opacity: 0.5;
+}
+.aurora::before { width: 34rem; height: 34rem; left: -8rem; top: -14rem; background: oklch(0.55 0.17 255); animation: drift 16s ease-in-out infinite alternate; }
+.aurora::after { width: 28rem; height: 28rem; right: -6rem; bottom: -12rem; background: oklch(0.7 0.13 65); opacity: 0.28; animation: drift 20s ease-in-out infinite alternate-reverse; }
+.aurora > * { position: relative; z-index: 1; }
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(6rem, 3rem, 0) scale(1.2); }
 }
 
+/* Cards: lift, soft coloured ring and shadow on hover */
+.shop-card:hover { box-shadow: 0 30px 60px -28px oklch(0.3 0.1 255 / 0.45), 0 0 0 1px oklch(0.55 0.12 255 / 0.25); }
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-kenburns, .animate-float, .animate-marquee, .reveal, .animate-fade-up, .animate-fade-in, .animate-pop { animation: none; }
+  .animate-kenburns, .animate-float, .animate-marquee, .reveal, .animate-fade-up, .animate-fade-in, .animate-pop, .aurora::before, .aurora::after { animation: none; }
+  .plate:hover::after { animation: none; }
   html { scroll-behavior: auto; }
   .shop-card:hover, .quick-chip:hover { transform: none; }
 }

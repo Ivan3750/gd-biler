@@ -18,5 +18,7 @@ export const localePath = (lang: Lang, path: string) => (lang === "en" ? `/en${p
 
 export const formatNumber = (n: number, lang: Lang) => n.toLocaleString(lang === "en" ? "en-GB" : "da-DK");
 
+export const copiedText = (lang: Lang) => (lang === "en" ? "Copied" : "Kopieret");
+
 export const formatPrice = (n: number, lang: Lang) =>
-  n <= 0 ? (lang === "en" ? "Call for price" : "Ring for pris") : lang === "en" ? `€${formatNumber(n, lang)}` : `${formatNumber(n, lang)} €`;
+  n <= 0 ? (lang === "en" ? "Call for price" : "Ring for pris") : lang === "en" ? `${formatNumber(n, lang)} DKK` : `${formatNumber(n, lang)} kr.`;

@@ -3,7 +3,8 @@ import { galleryOf, type Car } from "@/app/lib/cars";
 import { Plate } from "./Plate";
 import { CardImage } from "./CardImage";
 import type { Dict, Lang } from "@/app/lib/dict";
-import { formatNumber, formatPrice, localePath } from "@/app/lib/i18n";
+import { copiedText, formatNumber, formatPrice, localePath } from "@/app/lib/i18n";
+import { Price } from "./Price";
 
 export function CarCard({ car, lang, t, premium = false, index = 0 }: { car: Car; lang: Lang; t: Dict; premium?: boolean; index?: number }) {
   const href = localePath(lang, `/biler/${car.id}`);
@@ -15,12 +16,10 @@ export function CarCard({ car, lang, t, premium = false, index = 0 }: { car: Car
       <CardImage images={galleryOf(car)} alt={`${car.brand} ${car.model}`} href={href} brand={car.brand} />
 
       <div className="flex flex-1 flex-col p-5">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="text-lg font-semibold leading-tight">
-            <a href={href}>{car.model}</a>
-          </h3>
-          {premium && car.plate && <Plate value={car.plate} className="shrink-0 text-[13px]" />}
-        </div>
+        <h3 className="text-xl font-semibold leading-tight tracking-tight">
+          <a href={href}>{car.model}</a>
+        </h3>
+        {car.plate && <Plate value={car.plate} className="mt-3 self-start text-[14px]" />}
 
         <dl className="mt-4 flex flex-wrap gap-1.5">
           <Stat label={t.car.year} value={String(car.year)} />
@@ -31,7 +30,11 @@ export function CarCard({ car, lang, t, premium = false, index = 0 }: { car: Car
         <div className="mt-auto flex flex-wrap items-end justify-between gap-x-4 gap-y-3 border-t border-border pt-5">
           <div>
             <span className="block text-[11px] uppercase tracking-[0.15em] text-muted-foreground">{t.cars.price}</span>
-            <span className={`block font-semibold tracking-tight ${car.price > 0 ? "text-2xl" : "text-xl"}`}>{formatPrice(car.price, lang)}</span>
+            {car.price > 0 ? (
+              <Price text={formatPrice(car.price, lang)} copiedLabel={copiedText(lang)} className="text-2xl font-semibold tracking-tight" />
+            ) : (
+              <span className="block text-xl font-semibold tracking-tight">{formatPrice(car.price, lang)}</span>
+            )}
           </div>
           <a
             href={href}

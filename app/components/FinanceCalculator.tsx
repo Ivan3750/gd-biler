@@ -36,7 +36,7 @@ export function FinanceCalculator({
   const [rate, setRate] = useState(6);
 
   const money = (n: number) =>
-    lang === "en" ? `€${Math.round(n).toLocaleString("en-GB")}` : `${Math.round(n).toLocaleString("da-DK")} €`;
+    lang === "en" ? `${Math.round(n).toLocaleString("en-GB")} DKK` : `${Math.round(n).toLocaleString("da-DK")} kr.`;
 
   const r = useMemo(() => {
     const down = (price * downPct) / 100;

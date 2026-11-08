@@ -29,9 +29,17 @@ export function CardImage({
       href={href}
       onMouseMove={onMove}
       onMouseLeave={() => setI(0)}
-      className="relative block aspect-[4/3] overflow-hidden bg-secondary"
+      className="relative block aspect-[4/5] overflow-hidden bg-secondary"
     >
-      <img src={images[i]} alt={alt} loading="lazy" width={1024} className="h-full w-full object-cover object-[center_62%] transition-transform duration-700 ease-out group-hover:scale-[1.06]" />
+      <img src={images[i]} alt="" aria-hidden loading="lazy" className="photo-blur" />
+      <img
+        key={images[i]}
+        src={images[i]}
+        alt={alt}
+        loading="lazy"
+        width={1024}
+        className="animate-fade-in relative h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+      />
       <span className="absolute top-4 left-4 rounded-full bg-white/95 backdrop-blur px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
         {brand}
       </span>

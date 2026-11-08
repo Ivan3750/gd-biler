@@ -10,7 +10,8 @@ import { Plate } from "@/app/components/Plate";
 import { galleryOf, getCar, listPublishedCars, type Car } from "@/app/lib/cars";
 import { Gallery } from "@/app/components/Gallery";
 import { getSettings, telHref } from "@/app/lib/settings";
-import { formatNumber, formatPrice, getDict, localePath } from "@/app/lib/i18n";
+import { copiedText, formatNumber, formatPrice, getDict, localePath } from "@/app/lib/i18n";
+import { Price } from "@/app/components/Price";
 import type { Lang } from "@/app/lib/dict";
 import { JsonLd } from "@/app/components/JsonLd";
 import { absoluteUrl, breadcrumbJsonLd, pageMetadata } from "@/app/lib/seo";
@@ -123,7 +124,7 @@ export default async function CarPage({ params }: Props) {
     offers: {
       "@type": "Offer",
       price: car.price,
-      priceCurrency: "EUR",
+      priceCurrency: "DKK",
       url: absoluteUrl(localePath(lang, `/biler/${car.id}`)),
       itemCondition: "https://schema.org/UsedCondition",
       availability: "https://schema.org/InStock",
@@ -161,7 +162,9 @@ export default async function CarPage({ params }: Props) {
                 <h1 className="max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
                   {car.model}
                 </h1>
-                <p className="text-3xl font-semibold tracking-tight lg:hidden">{formatPrice(car.price, lang)}</p>
+                <p className="text-3xl font-semibold tracking-tight lg:hidden">
+                  {car.price > 0 ? <Price text={formatPrice(car.price, lang)} copiedLabel={copiedText(lang)} /> : formatPrice(car.price, lang)}
+                </p>
               </div>
               <div className="mt-6 flex flex-wrap items-center gap-4">
                 {car.plate && <Plate value={car.plate} className="animate-float text-3xl sm:text-4xl" />}
@@ -209,7 +212,9 @@ export default async function CarPage({ params }: Props) {
                   </div>
                 )}
                 <span className="block text-[11px] uppercase tracking-[0.15em] text-muted-foreground">{c.price}</span>
-                <span className="block text-4xl font-semibold tracking-tight">{formatPrice(car.price, lang)}</span>
+                <span className="block text-4xl font-semibold tracking-tight">
+                  {car.price > 0 ? <Price text={formatPrice(car.price, lang)} copiedLabel={copiedText(lang)} /> : formatPrice(car.price, lang)}
+                </span>
 
                 <dl className="mt-5 grid grid-cols-2 gap-2">
                   <KeyFact icon={Calendar} label={c.year} value={String(car.year)} />

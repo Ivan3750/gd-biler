@@ -53,7 +53,7 @@ export function CarForm({ car }: { car?: Car }) {
           </select>
         </label>
         <label className="text-sm font-medium">
-          Pris (€)
+          Pris (kr.)
           <input name="price" type="number" required min={1} defaultValue={v("price", car?.price)} placeholder="42000" className={field} />
         </label>
       </div>
