@@ -1,6 +1,6 @@
 "use client";
-import { useRef, useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { useCopy } from "./useCopy";
 
 /** A price the visitor can click to copy, e.g. to paste into a message. Shows a short "copied" confirmation. */
 export function Price({
@@ -15,36 +15,12 @@ export function Price({
   copiedLabel: string;
   className?: string;
 }) {
-  const [done, setDone] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-
-  const copy = async () => {
-    const value = copyText ?? text;
-    try {
-      await navigator.clipboard.writeText(value);
-    } catch {
-      // Older browsers: fall back to selecting a hidden field.
-      const el = document.createElement("textarea");
-      el.value = value;
-      el.style.position = "fixed";
-      el.style.opacity = "0";
-      document.body.appendChild(el);
-      el.select();
-      try {
-        document.execCommand("copy");
-      } finally {
-        el.remove();
-      }
-    }
-    setDone(true);
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setDone(false), 1600);
-  };
+  const { done, copy } = useCopy();
 
   return (
     <button
       type="button"
-      onClick={copy}
+      onClick={() => copy(copyText ?? text)}
       title={copiedLabel}
       className={`price-copy group/price relative inline-flex items-center gap-2 text-left ${className}`}
     >

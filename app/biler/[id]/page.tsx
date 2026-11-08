@@ -167,7 +167,7 @@ export default async function CarPage({ params }: Props) {
                 </p>
               </div>
               <div className="mt-6 flex flex-wrap items-center gap-4">
-                {car.plate && <Plate value={car.plate} className="animate-float text-3xl sm:text-4xl" />}
+                {car.plate && <Plate value={car.plate} className="text-3xl sm:text-4xl" />}
                 <span className="text-sm text-white/60">
                   {car.year} · {formatNumber(car.km, lang)} km · {fuel}
                 </span>
@@ -205,12 +205,6 @@ export default async function CarPage({ params }: Props) {
               </div>
 
               <aside className="lg:col-span-2 rounded-3xl border border-border bg-card p-6 shadow-elevated lg:sticky lg:top-24">
-                {car.plate && (
-                  <div className="mb-5 flex items-center justify-between gap-3 rounded-2xl bg-secondary p-3">
-                    <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{da ? "Nummerplade" : "Plate"}{star}</span>
-                    <Plate value={car.plate} className="text-xl" />
-                  </div>
-                )}
                 <span className="block text-[11px] uppercase tracking-[0.15em] text-muted-foreground">{c.price}</span>
                 <span className="block text-4xl font-semibold tracking-tight">
                   {car.price > 0 ? <Price text={formatPrice(car.price, lang)} copiedLabel={copiedText(lang)} /> : formatPrice(car.price, lang)}

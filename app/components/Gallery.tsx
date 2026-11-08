@@ -63,14 +63,13 @@ export function Gallery({ images, alt, labels }: { images: string[]; alt: string
           className="block w-full cursor-zoom-in"
         >
           <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-square">
-            <img src={images[i]} alt="" aria-hidden className="photo-blur" />
             <img
               key={images[i]}
               src={images[i]}
               alt={`${alt} – ${labels.photo} ${i + 1}`}
               width={1280}
               height={960}
-              className="animate-fade-in relative h-full w-full object-contain"
+              className="animate-fade-in h-full w-full object-cover object-[center_58%]"
             />
           </div>
         </button>
@@ -102,7 +101,7 @@ export function Gallery({ images, alt, labels }: { images: string[]; alt: string
                   idx === i ? "border-primary" : "border-transparent opacity-60 hover:opacity-100"
                 }`}
               >
-                <img src={src} alt="" loading="lazy" className="aspect-[4/3] w-full bg-secondary object-contain" />
+                <img src={src} alt="" loading="lazy" className="aspect-[4/3] w-full bg-secondary object-cover" />
               </button>
             </li>
           ))}

@@ -29,23 +29,23 @@ export function CardImage({
       href={href}
       onMouseMove={onMove}
       onMouseLeave={() => setI(0)}
-      className="relative block aspect-[4/5] overflow-hidden bg-secondary"
+      className="relative block aspect-[4/5] overflow-hidden rounded-[1.25rem] bg-secondary"
     >
-      <img src={images[i]} alt="" aria-hidden loading="lazy" className="photo-blur" />
       <img
         key={images[i]}
         src={images[i]}
         alt={alt}
         loading="lazy"
         width={1024}
-        className="animate-fade-in relative h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+        className="animate-fade-in h-full w-full object-cover object-[center_58%] transition-transform duration-700 ease-out group-hover:scale-[1.05]"
       />
-      <span className="absolute top-4 left-4 rounded-full bg-white/95 backdrop-blur px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
+      <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/35 to-transparent" />
+      <span className="absolute left-3 top-3 rounded-full bg-black/45 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-md">
         {brand}
       </span>
       {n > 1 && (
         <>
-          <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 rounded-full bg-primary/80 px-2.5 py-1 text-[11px] font-medium text-primary-foreground">
+          <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-black/45 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
             <Camera size={12} /> {n}
           </span>
           <span className="absolute inset-x-0 bottom-3 flex justify-center gap-1.5">

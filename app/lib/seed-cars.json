@@ -2,13 +2,13 @@
   {
     "id": "bmw-730d-2009",
     "brand": "BMW",
-    "model": "730D",
+    "model": "730d",
     "year": 2009,
     "km": 275000,
     "fuel": "Diesel",
     "price": 0,
     "image": "/cars/bmw-730d-2009-1.jpg",
-    "description": "Velkørende BMW 730D som starter og kører godt.\n\nHalvårlig ejerafgift: 4580 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende BMW 730D som starter og kører godt.\n\nFørste indregistrering 10/2009, 245 hk, automatisk gear.\n\nHalvårlig ejerafgift: 4580 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:14.388837Z",
     "kmPerL": 14.7,
@@ -23,18 +23,31 @@
       "/cars/bmw-730d-2009-9.jpg",
       "/cars/bmw-730d-2009-10.jpg"
     ],
-    "bodyType": "Sedan"
+    "bodyType": "Sedan",
+    "plate": "DD 84 595",
+    "powerHp": 245,
+    "gearbox": "Automatisk",
+    "drive": "Baghjulstræk",
+    "doors": 4,
+    "seats": 5,
+    "firstRegistration": "10/2009",
+    "equipment": [
+      "Seneste syn 10/2025: godkendt (ved 272.059 km)"
+    ],
+    "equipmentEn": [
+      "Latest inspection 10/2025: approved (at 272.059 km)"
+    ]
   },
   {
     "id": "ford-fiesta-1-0-ecoboost-2014",
     "brand": "Ford",
-    "model": "Fiesta 1.0 Ecoboost",
+    "model": "Fiesta 1.0 EcoBoost",
     "year": 2014,
     "km": 139000,
     "fuel": "Benzin",
     "price": 47000,
     "image": "/cars/ford-fiesta-1-0-ecoboost-2014-1.jpg",
-    "description": "Velkørende Ford Fiesta som starter og kører godt. Nysynet, og tandremmen er skiftet.\n\nHalvårlig ejerafgift: 460 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Ford Fiesta som starter og kører godt. Nysynet, og tandremmen er skiftet.\n\nFørste indregistrering 06/2014, 125 hk, manuel gear.\n\nHalvårlig ejerafgift: 460 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:13.388837Z",
     "kmPerL": 23.3,
@@ -49,19 +62,32 @@
     "plate": "CH 57 030",
     "equipment": [
       "Ny synsrapport",
-      "Tandrem skiftet"
+      "Tandrem skiftet",
+      "Seneste syn 07/2026: godkendt (ved 139.000 km)"
+    ],
+    "powerHp": 125,
+    "color": "Sort",
+    "gearbox": "Manuel",
+    "drive": "Forhjulstræk",
+    "doors": 5,
+    "seats": 5,
+    "firstRegistration": "06/2014",
+    "equipmentEn": [
+      "New inspection report",
+      "Timing belt replaced",
+      "Latest inspection 07/2026: approved (at 139.000 km)"
     ]
   },
   {
     "id": "ford-fiesta-1-0-ecoboost-2014-2",
     "brand": "Ford",
-    "model": "Fiesta 1.0 Ecoboost",
+    "model": "Fiesta 1.0 EcoBoost",
     "year": 2014,
     "km": 119000,
     "fuel": "Benzin",
     "price": 54000,
     "image": "/cars/ford-fiesta-1-0-ecoboost-2014-2-1.jpg",
-    "description": "Velkørende Ford Fiesta som starter og kører godt. Nysynet med ny tandrem og ny kobling.\n\nHalvårlig ejerafgift: 460 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Ford Fiesta som starter og kører godt. Nysynet med ny tandrem og ny kobling.\n\nFørste indregistrering 07/2014, 125 hk, manuel gear.\n\nHalvårlig ejerafgift: 460 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:12.388837Z",
     "kmPerL": 23.3,
@@ -78,7 +104,21 @@
     "equipment": [
       "Ny synsrapport",
       "Ny tandrem",
-      "Ny kobling"
+      "Ny kobling",
+      "Seneste syn 05/2026: godkendt (ved 119.000 km)"
+    ],
+    "powerHp": 125,
+    "color": "Brun",
+    "gearbox": "Manuel",
+    "drive": "Forhjulstræk",
+    "doors": 5,
+    "seats": 5,
+    "firstRegistration": "07/2014",
+    "equipmentEn": [
+      "New inspection report",
+      "New timing belt",
+      "New clutch",
+      "Latest inspection 05/2026: approved (at 119.000 km)"
     ]
   },
   {
@@ -90,7 +130,7 @@
     "fuel": "Benzin",
     "price": 30000,
     "image": "/cars/hyundai-i10-1-0-2015-1.jpg",
-    "description": "Velkørende Hyundai i10 som starter og kører godt.\n\nHalvårlig ejerafgift: 420 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Hyundai i10 som starter og kører godt.\n\nFørste indregistrering 04/2015, 66 hk.\n\nHalvårlig ejerafgift: 420 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:11.388837Z",
     "kmPerL": 21.3,
@@ -103,7 +143,18 @@
       "/cars/hyundai-i10-1-0-2015-7.jpg"
     ],
     "bodyType": "Hatchback",
-    "plate": "BW 84 772"
+    "plate": "BW 84 772",
+    "powerHp": 66,
+    "color": "Sort",
+    "drive": "Forhjulstræk",
+    "seats": 5,
+    "firstRegistration": "04/2015",
+    "equipment": [
+      "Seneste syn 07/2026: godkendt (ved 178.877 km, ingen fejl)"
+    ],
+    "equipmentEn": [
+      "Latest inspection 07/2026: approved (at 178.877 km, no faults)"
+    ]
   },
   {
     "id": "mitsubishi-space-star-1-2-2018",
@@ -114,7 +165,7 @@
     "fuel": "Benzin",
     "price": 44000,
     "image": "/cars/mitsubishi-space-star-1-2-2018-1.jpg",
-    "description": "Velkørende Mitsubishi Space Star som starter og kører godt.\n\nHalvårlig ejerafgift: 740 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Mitsubishi Space Star som starter og kører godt.\n\nFørste indregistrering 05/2018, 80 hk.\n\nHalvårlig ejerafgift: 740 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:10.388837Z",
     "kmPerL": 24.4,
@@ -127,18 +178,30 @@
       "/cars/mitsubishi-space-star-1-2-2018-7.jpg"
     ],
     "bodyType": "Hatchback",
-    "plate": "BY 42 793"
+    "plate": "BY 42 793",
+    "powerHp": 80,
+    "color": "Sort",
+    "drive": "Forhjulstræk",
+    "doors": 5,
+    "seats": 5,
+    "firstRegistration": "05/2018",
+    "equipment": [
+      "Seneste syn 05/2026: godkendt (ved 149.415 km, ingen fejl)"
+    ],
+    "equipmentEn": [
+      "Latest inspection 05/2026: approved (at 149.415 km, no faults)"
+    ]
   },
   {
     "id": "renault-megane-1-5-dci-2011",
     "brand": "Renault",
-    "model": "Megane 1.5 dCi",
+    "model": "Mégane Sport Tourer 1.5 dCi 110",
     "year": 2011,
     "km": 203000,
     "fuel": "Diesel",
     "price": 32000,
     "image": "/cars/renault-megane-1-5-dci-2011-1.jpg",
-    "description": "Velkørende Renault Megane som starter og kører godt.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Renault Megane som starter og kører godt.\n\nFørste indregistrering 08/2011, 110 hk.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:09.388837Z",
     "kmPerL": 22.7,
@@ -151,23 +214,45 @@
       "/cars/renault-megane-1-5-dci-2011-7.jpg"
     ],
     "plate": "EH 20 346",
-    "bodyType": "Stationcar"
+    "bodyType": "Stationcar",
+    "powerHp": 110,
+    "color": "Sort",
+    "drive": "Forhjulstræk",
+    "seats": 5,
+    "firstRegistration": "08/2011",
+    "equipment": [
+      "Seneste syn 09/2026: godkendt (ved 207.686 km)"
+    ],
+    "equipmentEn": [
+      "Latest inspection 09/2026: approved (at 207.686 km)"
+    ]
   },
   {
     "id": "renault-twingo-1-0-2014",
     "brand": "Renault",
-    "model": "Twingo 1.0",
+    "model": "Twingo SCe 70",
     "year": 2014,
     "km": 152000,
     "fuel": "Benzin",
     "price": 29000,
     "image": "/cars/renault-twingo-1-0-2014-1.jpg",
-    "description": "Velkørende Renault Twingo som starter og kører godt.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Renault Twingo som starter og kører godt.\n\nFørste indregistrering 11/2014, 71 hk.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:08.388837Z",
     "kmPerL": 23.8,
     "bodyType": "Hatchback",
-    "plate": "CA 55 694"
+    "plate": "CA 55 694",
+    "powerHp": 71,
+    "color": "Hvid",
+    "drive": "Baghjulstræk",
+    "seats": 4,
+    "firstRegistration": "11/2014",
+    "equipment": [
+      "Seneste syn 10/2026: godkendt (ved 151.563 km)"
+    ],
+    "equipmentEn": [
+      "Latest inspection 10/2026: approved (at 151.563 km)"
+    ]
   },
   {
     "id": "volkswagen-golf-1-4-tsi-2015",
@@ -178,23 +263,35 @@
     "fuel": "Benzin",
     "price": 69000,
     "image": "",
-    "description": "Velkørende Volkswagen Golf som starter og kører godt.\n\nHalvårlig ejerafgift: 880 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Volkswagen Golf som starter og kører godt.\n\nFørste indregistrering 05/2015, 122 hk.\n\nHalvårlig ejerafgift: 880 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:07.388837Z",
     "kmPerL": 18.9,
     "bodyType": "Hatchback",
-    "plate": "CA 17 418"
+    "plate": "CA 17 418",
+    "powerHp": 122,
+    "color": "Sort",
+    "drive": "Forhjulstræk",
+    "doors": 5,
+    "seats": 5,
+    "firstRegistration": "05/2015",
+    "equipment": [
+      "Seneste syn 08/2026: godkendt (ved 187.400 km, ingen fejl)"
+    ],
+    "equipmentEn": [
+      "Latest inspection 08/2026: approved (at 187.400 km, no faults)"
+    ]
   },
   {
     "id": "renault-clio-1-5-dci-2016",
     "brand": "Renault",
-    "model": "Clio 1.5 dCi",
+    "model": "Clio Sport Tourer 1.5 dCi 90",
     "year": 2016,
     "km": 214000,
     "fuel": "Diesel",
     "price": 42000,
     "image": "/cars/renault-clio-1-5-dci-2016-1.jpg",
-    "description": "Velkørende Renault Clio som starter og kører godt.\n\nHalvårlig ejerafgift: 520 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Renault Clio som starter og kører godt.\n\nFørste indregistrering 12/2016, 90 hk.\n\nHalvårlig ejerafgift: 520 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:06.388837Z",
     "kmPerL": 31.3,
@@ -205,22 +302,45 @@
       "/cars/renault-clio-1-5-dci-2016-3.jpg",
       "/cars/renault-clio-1-5-dci-2016-4.jpg",
       "/cars/renault-clio-1-5-dci-2016-5.jpg"
+    ],
+    "powerHp": 90,
+    "drive": "Forhjulstræk",
+    "seats": 5,
+    "firstRegistration": "12/2016",
+    "equipment": [
+      "Seneste syn 10/2026: godkendt (ved 215.251 km, ingen fejl)"
+    ],
+    "equipmentEn": [
+      "Latest inspection 10/2026: approved (at 215.251 km, no faults)"
     ]
   },
   {
     "id": "volkswagen-polo-1-4-tdi-2015",
     "brand": "Volkswagen",
-    "model": "Polo 1.4 TDI",
+    "model": "Polo 1.4 TDI BlueMotion",
     "year": 2015,
     "km": 212000,
     "fuel": "Diesel",
     "price": 55000,
     "image": "/cars/volkswagen-polo-1-4-tdi-2015-1.jpg",
-    "description": "Velkørende Volkswagen Polo som starter og kører godt.\n\nHalvårlig ejerafgift: 120 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Volkswagen Polo som starter og kører godt.\n\nFørste indregistrering 05/2015, 75 hk.\n\nHalvårlig ejerafgift: 120 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:05.388837Z",
     "kmPerL": 32.3,
-    "bodyType": "Hatchback"
+    "bodyType": "Hatchback",
+    "plate": "BX 23 467",
+    "powerHp": 75,
+    "color": "Grå",
+    "drive": "Forhjulstræk",
+    "doors": 5,
+    "seats": 5,
+    "firstRegistration": "05/2015",
+    "equipment": [
+      "Seneste syn 09/2025: godkendt (ved 204.189 km)"
+    ],
+    "equipmentEn": [
+      "Latest inspection 09/2025: approved (at 204.189 km)"
+    ]
   },
   {
     "id": "citroen-c1-1-0-2011",
@@ -231,14 +351,22 @@
     "fuel": "Benzin",
     "price": 25000,
     "image": "",
-    "description": "Velkørende Citroën C1 som starter og kører godt. Nysynet.\n\nHalvårlig ejerafgift: 460 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Citroën C1 som starter og kører godt. Nysynet.\n\nFørste indregistrering 06/2011, 68 hk.\n\nHalvårlig ejerafgift: 460 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:04.388837Z",
     "kmPerL": 21.7,
     "bodyType": "Hatchback",
     "plate": "GW 52 924",
     "equipment": [
-      "Ny synsrapport"
+      "Ny synsrapport",
+      "Seneste syn 07/2025: godkendt (ved 166.644 km)"
+    ],
+    "powerHp": 68,
+    "seats": 4,
+    "firstRegistration": "06/2011",
+    "equipmentEn": [
+      "New inspection report",
+      "Latest inspection 07/2025: approved (at 166.644 km)"
     ]
   }
 ]

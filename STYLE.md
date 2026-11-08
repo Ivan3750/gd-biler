@@ -70,3 +70,8 @@ Siden er løftet til et mere moderne udtryk (afløser reglerne "ingen glas, inge
 - Billeder vises helt: `object-contain` oven på en sløret kopi af samme billede (`.photo-blur`), så hele bilen ses uanset format. Kortbilleder er 4:5, galleriet er kvadratisk.
 - Nummerplade (`Plate.tsx`): blå EU-stribe med stjerner, hævede tegn og et lysglimt ved hover. Vises på alle bilkort.
 - `.aurora`: langsomt bevægende farveglød bag den mørke banner på kataloget.
+
+## Opdatering: bilkort og nummerplader
+- Bilkort: hvidt kort med lille indre ramme, foto i 4:5 uden sløring (fotos er stående, så næsten hele bilen ses), mærke og antal billeder som mørke glas-piller, spec-linje "år · km · brændstof", stor pris og en rund pil-knap.
+- Nummerplade (`Plate.tsx`): ren hvid plade med blå EU-stribe, 12 gule stjerner og monospace-tegn. Klik kopierer nummeret uden mellemrum og viser "Kopieret" (`useCopy.ts`). Nummerpladen kan også søges i kataloget.
+- Annoncedata (effekt, første indregistrering, farve, træk, døre, sæder, seneste syn) er hentet fra de offentlige køretøjsdata for hver nummerplade og stemt af mod billeder og mails. Renault Clio: registret siger sort, billederne viser rød, så farve er udeladt.
