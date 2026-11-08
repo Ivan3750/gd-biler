@@ -116,7 +116,7 @@ export const RANGE_FILTERS = [
 export type RangeFilter = (typeof RANGE_FILTERS)[number];
 
 export type CarFilters = {
-  /** Free text: every word must appear in make, model, year or colour. */
+  /** Free text: every word must appear in make, model, year, fuel, body type, colour, plate or equipment. */
   q?: string;
   sort?: string;
 } & { [K in ListFilter]?: string[] } & { [K in RangeFilter]?: number };
@@ -130,9 +130,23 @@ export const valuesOf = (c: Car, key: ListFilter): string[] => {
 const inRange = (v: number | undefined, min?: number, max?: number) =>
   (min === undefined && max === undefined) || (v !== undefined && (min === undefined || v >= min) && (max === undefined || v <= max));
 
+/** Lower-case, without accents or punctuation, so "citroen", "i 10" and "Fiesta-1.0" all find what the visitor means. */
+const fold = (s: string) =>
+  s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
+
 export function filterCars(cars: Car[], f: CarFilters): Car[] {
-  const words = (f.q ?? "").toLowerCase().split(/\s+/).filter(Boolean);
-  const haystack = (c: Car) => `${c.brand} ${c.model} ${c.year} ${c.color ?? ""}`.toLowerCase();
+  const words = fold(f.q ?? "").split(" ").filter(Boolean);
+  const haystack = (c: Car) => {
+    const text = fold(
+      [c.brand, c.model, c.year, c.color, c.fuel, c.bodyType, c.gearbox, c.drive, c.plate, c.equipment?.join(" ")].filter(Boolean).join(" "),
+    );
+    return `${text} ${text.replace(/ /g, "")}`;
+  };
   const out = cars.filter(
     (c) =>
       words.every((w) => haystack(c).includes(w)) &&

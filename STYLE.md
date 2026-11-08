@@ -56,3 +56,11 @@ Siden er løftet til et mere moderne udtryk (afløser reglerne "ingen glas, inge
 - Fælles byggeklodser ligger i `app/components/shop.tsx` (SectionHead, Figures, ServiceBento, Areas, ChatDemo, Steps, FeatureGrid, CtaBand, FormSection). Nummerplade: `Plate.tsx`.
 - Tekster til finansiering, garanti, levering og juridiske sider: `app/lib/pages.ts` (dansk + engelsk).
 - Tone som webhjerte.dk: direkte, personlig, faste løfter og tal i stedet for salgsfraser.
+
+## Opdatering: katalog og bevægelse
+- Søgning på `/biler`: hvid pille-søgebar (`.search-input`) og sorteringsvalg (`.search-select`) på navy, med hurtigvalg (`.quick-chip`) for mærker og drivmidler. Et hurtigvalg slår kun det ene valg til/fra og beholder resten.
+- Fritekst ignorerer store/små bogstaver, accenter og tegnsætning ("citroen" finder Citroën, "i10" finder "i10 1.0") og søger i mærke, model, årgang, farve, drivmiddel, biltype, gear, nummerplade og udstyr.
+- Bilkort: små piller for årgang, km og drivmiddel; billedet zoomer let ved hover; kortene toner ind efter hinanden (`animate-fade-up` med forsinkelse). Første billede i hver annonce er bilen set forfra.
+- Biler uden billede viser `/cars/no-photo.svg`; biler uden pris viser "Ring for pris".
+- Ny bevægelse: `.quick-chip` (hover/tryk), `.animate-pop`, glidende scroll. Alt slås fra ved `prefers-reduced-motion`.
+- Annoncerne ligger som startdata i `app/lib/seed-cars.json` (billeder i `public/cars/`), så de også virker på Vercel.

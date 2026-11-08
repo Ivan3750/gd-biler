@@ -220,6 +220,38 @@ select.bare-select {
   padding: 0 1.25rem 0 0;
 }
 
+/* ---------- Catalog search ---------- */
+.search-input, .search-select {
+  height: 3.5rem; width: 100%; border: 0; border-radius: 9999px;
+  background: #fff; color: var(--foreground); color-scheme: light;
+  box-shadow: var(--shadow-elevated); font-size: 1rem; outline: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.search-input { padding: 0 1.25rem 0 3.25rem; -webkit-appearance: none; appearance: none; }
+.search-input::placeholder { color: var(--muted-foreground); }
+.search-input:focus, .search-select:focus-visible { box-shadow: 0 0 0 3px oklch(0.78 0.12 70 / 0.65), var(--shadow-elevated); }
+.search-select { -webkit-appearance: none; appearance: none; padding: 0 2.75rem 0 1.25rem; font-weight: 500; cursor: pointer; backdrop-filter: none; }
+.search-select option { background: #fff; color: #111; }
+.quick-chip {
+  display: inline-flex; align-items: center; border-radius: 9999px; padding: 0.4rem 0.95rem;
+  font-size: 0.8125rem; font-weight: 500; color: oklch(1 0 0 / 0.85);
+  border: 1px solid oklch(1 0 0 / 0.22); background: oklch(1 0 0 / 0.04);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.quick-chip:hover { background: oklch(1 0 0 / 0.14); transform: translateY(-2px); }
+.quick-chip:active { transform: scale(0.95); }
+.quick-chip-on { background: #fff; color: var(--primary); border-color: #fff; }
+.quick-chip-on:hover { background: #fff; }
+
+/* ---------- More motion ---------- */
+html { scroll-behavior: smooth; }
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+.animate-pop { animation: pop-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+a, button { -webkit-tap-highlight-color: transparent; }
+
 /* ---------- Premium motion + plate (home page and car page) ---------- */
 @keyframes kenburns {
   from { transform: scale(1.04); }
@@ -299,5 +331,7 @@ select.bare-select {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-kenburns, .animate-float, .animate-marquee, .reveal { animation: none; }
+  .animate-kenburns, .animate-float, .animate-marquee, .reveal, .animate-fade-up, .animate-fade-in, .animate-pop { animation: none; }
+  html { scroll-behavior: auto; }
+  .shop-card:hover, .quick-chip:hover { transform: none; }
 }

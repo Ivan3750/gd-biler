@@ -31,7 +31,7 @@ export function CardImage({
       onMouseLeave={() => setI(0)}
       className="relative block aspect-[4/3] overflow-hidden bg-secondary"
     >
-      <img src={images[i]} alt={alt} loading="lazy" width={1024} className="h-full w-full object-cover" />
+      <img src={images[i]} alt={alt} loading="lazy" width={1024} className="h-full w-full object-cover object-[center_62%] transition-transform duration-700 ease-out group-hover:scale-[1.06]" />
       <span className="absolute top-4 left-4 rounded-full bg-white/95 backdrop-blur px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
         {brand}
       </span>

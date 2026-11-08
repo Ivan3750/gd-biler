@@ -137,8 +137,21 @@ export default async function CatalogPage({ searchParams }: { searchParams: Sear
             : k === "equipment"
               ? equipLabel.get(v) ?? v
               : v;
+  // One-tap shortcuts above the list: a link toggles that single choice and keeps everything else.
+  const toggleHref = (key: ListFilter, value: string) => {
+    const pairs = [...new URLSearchParams(searchQs)];
+    const has = pairs.some(([k, v]) => k === key && v === value);
+    const next = new URLSearchParams(has ? pairs.filter(([k, v]) => !(k === key && v === value)) : [...pairs, [key, value]]);
+    if (sort) next.set("sort", sort);
+    const qs = next.toString();
+    return qs ? `${listPath}?${qs}` : listPath;
+  };
+  const quick = [
+    ...brands.map((b) => ({ key: `brand-${b}`, label: b, on: lists.brand.includes(b), href: toggleHref("brand", b) })),
+    ...fuels.map((f) => ({ key: `fuel-${f}`, label: t.cars.fuel[f] ?? f, on: lists.fuel.includes(f), href: toggleHref("fuel", f) })),
+  ];
   const chips = [
-    ...(q ? [{ key: "q", name: ft.search.replace(/…$/, ""), label: q, href: chipHref({ key: "q" }) }] : []),
+    ...(q ? [{ key: "q", name: lang === "en" ? "Search" : "Søgning", label: q, href: chipHref({ key: "q" }) }] : []),
     ...LIST_FILTERS.flatMap((k) =>
       lists[k].map((v) => ({ key: `${k}-${v}`, name: ft[k], label: listLabel(k, v), href: chipHref({ key: k, value: v }) })),
     ),
@@ -183,39 +196,38 @@ export default async function CatalogPage({ searchParams }: { searchParams: Sear
               </div>
 
               {/* Search and sorting: always visible */}
-              <div
-                className="glass mt-8 grid max-w-4xl animate-fade-up gap-2 rounded-2xl p-3 shadow-elevated sm:grid-cols-[1fr_16rem] sm:p-4"
-                style={{ animationDelay: "150ms" }}
-              >
-                <label className="flex flex-col rounded-xl bg-white/5 px-4 py-2.5 transition-colors hover:bg-white/10">
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-white/60">{ft.search.replace(/…$/, "")}</span>
-                  <span className="relative mt-0.5 flex items-center">
-                    <Search size={14} className="pointer-events-none absolute left-0 text-white/60" />
+              <div className="mt-8 max-w-4xl animate-fade-up" style={{ animationDelay: "150ms" }}>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <label className="group relative block flex-1">
+                    <span className="sr-only">{ft.search}</span>
+                    <Search size={20} className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors group-focus-within:text-foreground" />
                     <input
                       type="search"
                       name="q"
                       defaultValue={q}
+                      autoComplete="off"
                       placeholder={ft.search}
-                      className="w-full bg-transparent pl-6 text-sm font-medium text-white outline-none placeholder:text-white/40"
+                      className="search-input"
                     />
-                  </span>
-                </label>
-                <label className="group relative flex cursor-pointer flex-col rounded-xl bg-white/5 px-4 py-2.5 transition-colors hover:bg-white/10">
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-white/60">{ft.sort}</span>
-                  <span className="relative mt-0.5 flex items-center">
-                    <select
-                      name="sort"
-                      defaultValue={sort}
-                      className="bare-select w-full cursor-pointer appearance-none text-sm font-medium text-white outline-none"
-                    >
-                      <option value="" className="bg-navy text-white">{ft.sorts.newest}</option>
+                  </label>
+                  <label className="relative block sm:w-64">
+                    <span className="sr-only">{ft.sort}</span>
+                    <select name="sort" defaultValue={sort} className="search-select">
+                      <option value="">{ft.sorts.newest}</option>
                       {(["priceAsc", "priceDesc", "yearDesc", "kmAsc", "hpDesc"] as const).map((s) => (
-                        <option key={s} value={s} className="bg-navy text-white">{ft.sorts[s]}</option>
+                        <option key={s} value={s}>{ft.sorts[s]}</option>
                       ))}
                     </select>
-                    <ChevronDown size={13} className="pointer-events-none absolute right-0 text-white/50" />
-                  </span>
-                </label>
+                    <ChevronDown size={16} className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                  </label>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {quick.map((x) => (
+                    <a key={x.key} href={x.href} aria-pressed={x.on} className={`quick-chip ${x.on ? "quick-chip-on" : ""}`}>
+                      {x.label}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
@@ -346,8 +358,8 @@ export default async function CatalogPage({ searchParams }: { searchParams: Sear
                   </p>
                 ) : (
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                    {cars.map((car) => (
-                      <CarCard key={car.id} car={car} lang={lang} t={t} />
+                    {cars.map((car, i) => (
+                      <CarCard key={car.id} car={car} lang={lang} t={t} index={i} />
                     ))}
                   </div>
                 )}

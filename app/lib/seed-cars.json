@@ -150,7 +150,8 @@
       "/cars/renault-megane-1-5-dci-2011-6.jpg",
       "/cars/renault-megane-1-5-dci-2011-7.jpg"
     ],
-    "plate": "EH 20 346"
+    "plate": "EH 20 346",
+    "bodyType": "Stationcar"
   },
   {
     "id": "renault-twingo-1-0-2014",
@@ -160,7 +161,7 @@
     "km": 152000,
     "fuel": "Benzin",
     "price": 29000,
-    "image": "",
+    "image": "/cars/renault-twingo-1-0-2014-1.jpg",
     "description": "Velkørende Renault Twingo som starter og kører godt.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:08.388837Z",
@@ -192,13 +193,19 @@
     "km": 214000,
     "fuel": "Diesel",
     "price": 42000,
-    "image": "",
+    "image": "/cars/renault-clio-1-5-dci-2016-1.jpg",
     "description": "Velkørende Renault Clio som starter og kører godt.\n\nHalvårlig ejerafgift: 520 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:06.388837Z",
     "kmPerL": 31.3,
-    "bodyType": "Hatchback",
-    "plate": "BN 46 755"
+    "bodyType": "Stationcar",
+    "plate": "BN 46 755",
+    "images": [
+      "/cars/renault-clio-1-5-dci-2016-2.jpg",
+      "/cars/renault-clio-1-5-dci-2016-3.jpg",
+      "/cars/renault-clio-1-5-dci-2016-4.jpg",
+      "/cars/renault-clio-1-5-dci-2016-5.jpg"
+    ]
   },
   {
     "id": "volkswagen-polo-1-4-tdi-2015",
@@ -208,7 +215,7 @@
     "km": 212000,
     "fuel": "Diesel",
     "price": 55000,
-    "image": "",
+    "image": "/cars/volkswagen-polo-1-4-tdi-2015-1.jpg",
     "description": "Velkørende Volkswagen Polo som starter og kører godt.\n\nHalvårlig ejerafgift: 120 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:05.388837Z",
