@@ -1,12 +1,13 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { ExternalLink, Image as ImageIcon, LayoutDashboard, LogOut, Mail, Settings, Type, Car } from "lucide-react";
+import { BellRing, ExternalLink, Image as ImageIcon, LayoutDashboard, LogOut, Mail, Settings, Type, Car } from "lucide-react";
 import { logoutAction } from "./actions";
 
 const items = [
   { href: "/admin", label: "Overblik", icon: LayoutDashboard, exact: true },
   { href: "/admin/cars", label: "Annoncer", icon: Car },
   { href: "/admin/messages", label: "Beskeder", icon: Mail, badge: true },
+  { href: "/admin/abonnenter", label: "Abonnenter", icon: BellRing },
   { href: "/admin/tekster", label: "Tekster", icon: Type },
   { href: "/admin/billeder", label: "Billeder", icon: ImageIcon },
   { href: "/admin/indstillinger", label: "Indstillinger", icon: Settings },

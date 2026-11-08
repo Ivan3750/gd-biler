@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { getDict } from "./lib/i18n";
-import { SITE_NAME, SITE_URL } from "./lib/seo";
+import { GEO, SITE_NAME, SITE_URL } from "./lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,13 +14,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#0E2A47" };
+
 export async function generateMetadata(): Promise<Metadata> {
-  const { t } = await getDict();
+  const { t, lang } = await getDict();
   return {
     metadataBase: new URL(SITE_URL),
     title: { default: `GD Biler – ${t.meta.title}`, template: "%s | GD Biler" },
     description: t.meta.description,
     applicationName: SITE_NAME,
+    keywords: lang === "en"
+      ? ["used cars Horsens", "car dealer Horsens", "used cars Denmark", "car workshop Horsens", "sell your car"]
+      : ["brugte biler Horsens", "bilforhandler Horsens", "brugte biler til salg", "autoværksted Horsens", "sælg din bil"],
+    formatDetection: { telephone: true, email: true, address: true },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+    other: {
+      "geo.region": GEO.region,
+      "geo.placename": GEO.placename,
+      "geo.position": `${GEO.lat};${GEO.lng}`,
+      ICBM: `${GEO.lat}, ${GEO.lng}`,
+    },
   };
 }
 

@@ -91,6 +91,10 @@ export function CarForm({ car }: { car?: Car }) {
             <input name="kmPerL" type="number" step="0.1" min={0} defaultValue={v("kmPerL", car?.kmPerL)} placeholder="18.5" className={field} />
           </label>
           <label className="text-sm font-medium">
+            Nummerplade
+            <input name="plate" maxLength={12} defaultValue={v("plate", car?.plate)} placeholder="AB 12 345" className={`${field} uppercase`} />
+          </label>
+          <label className="text-sm font-medium">
             Farve
             <input name="color" maxLength={40} defaultValue={v("color", car?.color)} placeholder="Sort" className={field} />
           </label>

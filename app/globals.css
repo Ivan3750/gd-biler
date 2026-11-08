@@ -210,3 +210,94 @@ select.plain-select option {
   background: var(--background);
   color: var(--foreground);
 }
+
+/* Select inside a glass filter field: the field itself draws the box. */
+select.bare-select {
+  background: transparent;
+  backdrop-filter: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0 1.25rem 0 0;
+}
+
+/* ---------- Premium motion + plate (home page and car page) ---------- */
+@keyframes kenburns {
+  from { transform: scale(1.04); }
+  to { transform: scale(1.14) translate3d(-1.2%, -1%, 0); }
+}
+@keyframes sheen {
+  from { transform: translateX(-120%) skewX(-18deg); }
+  to { transform: translateX(260%) skewX(-18deg); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(28px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+.animate-kenburns { animation: kenburns 24s ease-in-out infinite alternate; }
+.animate-float { animation: float-y 6s ease-in-out infinite; }
+.animate-marquee { animation: marquee 40s linear infinite; }
+
+/* Scroll-driven reveal; browsers without support just show the content. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+/* Shopify-style surfaces */
+.shop-card {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.shop-card:hover { transform: translateY(-6px); }
+.btn-sheen { position: relative; overflow: hidden; isolation: isolate; }
+.btn-sheen::after {
+  content: "";
+  position: absolute; inset: 0; width: 40%;
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.35), transparent);
+  transform: translateX(-120%) skewX(-18deg);
+  z-index: -1;
+}
+.btn-sheen:hover::after { animation: sheen 0.9s ease; }
+.mesh {
+  background:
+    radial-gradient(60% 50% at 15% 0%, oklch(0.93 0.04 250 / 0.7), transparent 70%),
+    radial-gradient(50% 40% at 90% 10%, oklch(0.95 0.05 70 / 0.6), transparent 70%),
+    var(--background);
+}
+
+/* Danish registration plate */
+.plate {
+  display: inline-flex; align-items: stretch; overflow: hidden;
+  border-radius: 0.5rem; border: 2px solid oklch(0.2 0 0);
+  background: linear-gradient(180deg, oklch(1 0 0), oklch(0.96 0 0));
+  box-shadow: 0 1px 0 oklch(1 0 0) inset, 0 8px 20px -8px oklch(0 0 0 / 0.35);
+  font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  color: oklch(0.15 0 0);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.plate:hover { transform: scale(1.04) rotate(-0.6deg); }
+.plate-eu {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  padding: 0 0.45em; background: oklch(0.42 0.16 262); color: white;
+  font-size: 0.55em; font-weight: 700; letter-spacing: 0.04em;
+}
+.plate-eu i {
+  display: block; width: 1.1em; height: 1.1em; border-radius: 9999px; border: 1px dotted oklch(0.88 0.17 95);
+}
+.plate-no {
+  display: flex; align-items: center; padding: 0.2em 0.7em;
+  font-weight: 700; letter-spacing: 0.08em; white-space: nowrap; text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-kenburns, .animate-float, .animate-marquee, .reveal { animation: none; }
+}

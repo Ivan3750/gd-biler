@@ -48,3 +48,11 @@ Dansk, direkte og som man siger det i samtale. Korte sætninger. Ingen salgsfras
 `/admin` bruger de samme tokens, men er bevidst enkel: grå baggrund, hvide kort, `rounded-xl`.
 Adgangskoden står i `ADMIN_PASSWORD` i `.env.local` (se `.env.example`).
 Annoncer gemmes i `data/cars.json`, uploadede billeder i `data/uploads/` (begge uden for git).
+
+## Opdatering: premium / Shopify-look
+Siden er løftet til et mere moderne udtryk (afløser reglerne "ingen glas, ingen hover-løft, ingen pille-knapper" ovenfor):
+- Store runde kort (`rounded-3xl`), pille-knapper, `glass` på mørke flader, `mesh`-gradient på lyse sektioner.
+- Bevægelse: `.reveal` (scroll-indtoning), `.shop-card` (hover-løft), `.btn-sheen` (glans), `.animate-kenburns`, mærkestrimmel. Alt slås fra ved `prefers-reduced-motion`.
+- Fælles byggeklodser ligger i `app/components/shop.tsx` (SectionHead, Figures, ServiceBento, Areas, ChatDemo, Steps, FeatureGrid, CtaBand, FormSection). Nummerplade: `Plate.tsx`.
+- Tekster til finansiering, garanti, levering og juridiske sider: `app/lib/pages.ts` (dansk + engelsk).
+- Tone som webhjerte.dk: direkte, personlig, faste løfter og tal i stedet for salgsfraser.

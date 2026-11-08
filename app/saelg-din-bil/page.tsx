@@ -8,6 +8,8 @@ import { Faq } from "@/app/components/Faq";
 import { JsonLd } from "@/app/components/JsonLd";
 import { Lines } from "@/app/components/Lines";
 import { PageBanner } from "@/app/components/PageBanner";
+import { ChatDemo } from "@/app/components/shop";
+import { pagesDict } from "@/app/lib/pages";
 import { getImages } from "@/app/lib/images";
 import { getDict, localePath } from "@/app/lib/i18n";
 import { breadcrumbJsonLd, pageMetadata } from "@/app/lib/seo";
@@ -109,6 +111,7 @@ export default async function SellPage() {
           </div>
         </section>
 
+        <ChatDemo lang={lang} chat={pagesDict[lang].chat} />
         <Faq label={s.faqLabel} title={s.faqTitle} items={s.faq} />
         <Contact />
       </main>

@@ -5,6 +5,7 @@ import { randomUUID } from "crypto";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { deleteMessage, setMessageRead, listMessages } from "@/app/lib/messages";
+import { deleteSubscriber } from "@/app/lib/subscribers";
 import { storeImage } from "@/app/lib/uploads";
 import { checkLogin, createSession, destroySession, requireAdmin } from "@/app/lib/auth";
 import {
@@ -158,6 +159,7 @@ export async function saveCarAction(_: FormState, formData: FormData): Promise<F
     gearbox: oneOf<Gearbox>(GEARBOXES, text(formData, "gearbox")),
     drive: oneOf<Drive>(DRIVES, text(formData, "drive")),
     ...optional,
+    plate: text(formData, "plate").toUpperCase().slice(0, 12) || undefined,
     color: text(formData, "color").slice(0, 40) || undefined,
     firstRegistration: text(formData, "firstRegistration").slice(0, 20) || undefined,
     equipment,
@@ -204,4 +206,10 @@ export async function deleteMessageAction(formData: FormData) {
   await requireAdmin();
   await deleteMessage(text(formData, "id"));
   revalidatePath("/admin/messages");
+}
+
+export async function deleteSubscriberAction(formData: FormData) {
+  await requireAdmin();
+  await deleteSubscriber(text(formData, "id"));
+  revalidatePath("/admin/abonnenter");
 }

@@ -1,6 +1,7 @@
 import { getDict, localePath } from "@/app/lib/i18n";
 import { getSettings, telHref } from "@/app/lib/settings";
 import { getImages } from "@/app/lib/images";
+import { pagesDict } from "@/app/lib/pages";
 
 import { Logo } from "./Logo";
 
@@ -8,11 +9,12 @@ export async function Footer() {
   const [{ lang, t }, s, images] = await Promise.all([getDict(), getSettings(), getImages()]);
   const f = t.footer;
   const p = (path: string) => localePath(lang, path);
+  const pg = pagesDict[lang];
 
   return (
     <footer className="bg-primary texture-light text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 lg:py-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
           <div className="col-span-2">
             <Logo variant="light" src={images.logo} />
             <p className="mt-5 text-sm text-white/60 max-w-xs leading-relaxed">{f.tagline}</p>
@@ -26,6 +28,16 @@ export async function Footer() {
               [t.nav.workshop, p("/vaerksted")],
               [t.nav.about, p("/om-os")],
               [t.nav.contact, p("/kontakt")],
+            ]}
+          />
+          <FooterCol
+            title={pg.footer.info}
+            links={[
+              [pg.footer.finance, p("/finansiering")],
+              [pg.footer.warranty, p("/garanti")],
+              [pg.footer.delivery, p("/levering")],
+              [pg.footer.terms, p("/handelsbetingelser")],
+              [pg.footer.privacy, p("/privatliv")],
             ]}
           />
           <FooterCol
@@ -45,8 +57,8 @@ export async function Footer() {
             <span>CVR: {s.cvr}</span>
           </div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white">{f.terms}</a>
-            <a href="#" className="hover:text-white">{f.privacy}</a>
+            <a href={p("/handelsbetingelser")} className="hover:text-white">{f.terms}</a>
+            <a href={p("/privatliv")} className="hover:text-white">{f.privacy}</a>
           </div>
         </div>
       </div>

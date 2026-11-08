@@ -1,19 +1,23 @@
 import { ArrowUpRight } from "lucide-react";
 import { galleryOf, type Car } from "@/app/lib/cars";
+import { Plate } from "./Plate";
 import { CardImage } from "./CardImage";
 import type { Dict, Lang } from "@/app/lib/dict";
 import { formatNumber, formatPrice, localePath } from "@/app/lib/i18n";
 
-export function CarCard({ car, lang, t }: { car: Car; lang: Lang; t: Dict }) {
+export function CarCard({ car, lang, t, premium = false }: { car: Car; lang: Lang; t: Dict; premium?: boolean }) {
   const href = localePath(lang, `/biler/${car.id}`);
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-2xl bg-card border border-border transition-shadow duration-500 hover:shadow-elevated">
+    <article className={`group relative flex flex-col overflow-hidden bg-card border border-border transition-shadow duration-500 hover:shadow-elevated ${premium ? "shop-card reveal rounded-3xl" : "rounded-2xl"}`}>
       <CardImage images={galleryOf(car)} alt={`${car.brand} ${car.model}`} href={href} brand={car.brand} />
 
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-lg font-semibold leading-tight">
-          <a href={href}>{car.model}</a>
-        </h3>
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="text-lg font-semibold leading-tight">
+            <a href={href}>{car.model}</a>
+          </h3>
+          {premium && car.plate && <Plate value={car.plate} className="shrink-0 text-[13px]" />}
+        </div>
 
         <dl className="mt-4 grid grid-cols-3 gap-3">
           <Stat label={t.car.fuel} value={t.cars.fuel[car.fuel] ?? car.fuel} />
@@ -28,7 +32,7 @@ export function CarCard({ car, lang, t }: { car: Car; lang: Lang; t: Dict }) {
           </div>
           <a
             href={href}
-            className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-5 py-2.5 text-xs font-semibold transition-transform hover:scale-105"
+            className={`inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-5 py-2.5 text-xs font-semibold transition-transform hover:scale-105 ${premium ? "btn-sheen" : ""}`}
           >
             {t.cars.more} <ArrowUpRight size={14} />
           </a>

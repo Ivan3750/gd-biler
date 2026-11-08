@@ -9,6 +9,12 @@ export const SITE_NAME = "GD Biler";
 
 export const absoluteUrl = (path: string) => (/^https?:/.test(path) ? path : `${SITE_URL}${path}`);
 
+/** Used for social previews when a page has no picture of its own. */
+export const DEFAULT_OG_IMAGE = "/og-default.jpg";
+
+/** Approximate position of the showroom in Horsens (used for local/geo search). */
+export const GEO = { lat: 55.8607, lng: 9.8503, region: "DK-82", placename: "Horsens" };
+
 type PageMeta = {
   lang: Lang;
   /** Language-less path, e.g. "/biler/abc". */
@@ -24,7 +30,7 @@ type PageMeta = {
 /** Title, description, canonical, hreflang alternates, Open Graph and Twitter tags for one page. */
 export function pageMetadata({ lang, path, title, description, image, noindex, canonicalPath }: PageMeta): Metadata {
   const canonical = localePath(lang, canonicalPath ?? path);
-  const images = image ? [{ url: image }] : undefined;
+  const images = [{ url: image ?? DEFAULT_OG_IMAGE }];
   return {
     title,
     description,
@@ -46,7 +52,7 @@ export function pageMetadata({ lang, path, title, description, image, noindex, c
       alternateLocale: lang === "en" ? "da_DK" : "en_GB",
       images,
     },
-    twitter: { card: "summary_large_image", title, description, images: image ? [image] : undefined },
+    twitter: { card: "summary_large_image", title, description, images: images.map((i) => i.url) },
     robots: noindex ? { index: false, follow: true } : undefined,
   };
 }
@@ -79,7 +85,38 @@ export function businessJsonLd(lang: Lang, description: string, s: Settings) {
         closes: "17:00",
       },
     ],
-    areaServed: "DK",
+    image: absoluteUrl(DEFAULT_OG_IMAGE),
+    logo: absoluteUrl(DEFAULT_OG_IMAGE),
+    priceRange: "€€",
+    currenciesAccepted: "DKK, EUR",
+    paymentAccepted: "Cash, Bank transfer, Financing",
+    knowsLanguage: ["da", "en"],
+    geo: { "@type": "GeoCoordinates", latitude: GEO.lat, longitude: GEO.lng },
+    hasMap: `https://www.google.com/maps?q=${encodeURIComponent(`${s.street}, ${s.zip} ${s.city}`)}`,
+    areaServed: [
+      { "@type": "City", name: "Horsens" },
+      { "@type": "AdministrativeArea", name: "Midtjylland" },
+      { "@type": "Country", name: "Denmark" },
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      telephone: phoneDigits(s.phone),
+      email: s.email,
+      availableLanguage: ["Danish", "English"],
+    },
+  };
+}
+
+export function websiteJsonLd(lang: Lang) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    name: SITE_NAME,
+    url: absoluteUrl(localePath(lang, "/")),
+    inLanguage: lang === "en" ? "en-GB" : "da-DK",
+    publisher: { "@id": `${SITE_URL}/#business` },
   };
 }
 

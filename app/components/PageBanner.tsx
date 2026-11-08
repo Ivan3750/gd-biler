@@ -21,7 +21,7 @@ export async function PageBanner({
         alt=""
         width={1920}
         height={1280}
-        className="absolute inset-0 h-full w-full object-cover opacity-90"
+        className="animate-kenburns absolute inset-0 h-full w-full object-cover opacity-90"
       />
       <div
         className="absolute inset-0"

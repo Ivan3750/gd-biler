@@ -8,11 +8,12 @@ export async function FeaturedCars() {
   const [cars, { lang, t }] = await Promise.all([listPublishedCars(), getDict()]);
 
   return (
-    <section id="cars" className="bg-background py-24 lg:py-32">
+    <section id="cars" className="mesh py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-          <div className="max-w-2xl">
-            <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">
+          <div className="max-w-2xl animate-fade-up">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3.5 py-1.5 text-[11px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand" />
               {t.cars.label}
             </span>
             <h2 className="mt-4 text-balance text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.02]">
@@ -21,7 +22,7 @@ export async function FeaturedCars() {
           </div>
           <a
             href={localePath(lang, "/biler")}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:gap-3 transition-all"
+            className="btn-sheen inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:gap-3 hover:shadow-soft"
           >
             {t.cars.seeAll}
             <ArrowUpRight size={16} />
@@ -33,7 +34,7 @@ export async function FeaturedCars() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {cars.map((car) => (
-              <CarCard key={car.id} car={car} lang={lang} t={t} />
+              <CarCard key={car.id} car={car} lang={lang} t={t} premium />
             ))}
           </div>
         )}

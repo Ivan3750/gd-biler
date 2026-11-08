@@ -22,7 +22,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     entry("/", undefined, 1),
     entry("/biler", cars[0] && new Date(cars[0].createdAt), 0.9),
+    entry("/finansiering", undefined, 0.8),
+    entry("/garanti", undefined, 0.7),
+    entry("/levering", undefined, 0.7),
     entry("/vaerksted", undefined, 0.7),
+    entry("/handelsbetingelser", undefined, 0.2),
+    entry("/privatliv", undefined, 0.2),
     entry("/saelg-din-bil", undefined, 0.7),
     entry("/om-os", undefined, 0.6),
     entry("/kontakt", undefined, 0.5),

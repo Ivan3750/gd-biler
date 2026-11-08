@@ -27,7 +27,7 @@ export default async function AdminPage() {
               key={car.id}
               className="flex flex-col gap-4 rounded-xl border border-border bg-background p-4 sm:flex-row sm:items-center"
             >
-              <img src={car.image} alt="" className="h-24 w-full rounded-lg object-cover sm:w-36" />
+              <img src={car.image || "/cars/no-photo.svg"} alt="" className="h-24 w-full rounded-lg object-cover sm:w-36" />
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <h2 className="truncate font-semibold">

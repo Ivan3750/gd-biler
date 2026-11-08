@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Calendar, Car as CarIcon, Check, ChevronRight, Cog, Fuel, Gauge, Mail, Phone, ShieldCheck, Zap } from "lucide-react";
+import { ArrowLeft, Calculator, Calendar, Car as CarIcon, Check, ChevronRight, Cog, Fuel, Gauge, Mail, Phone, ShieldCheck, Zap } from "lucide-react";
 import { Header } from "@/app/components/Header";
 import { Contact } from "@/app/components/Contact";
 import { Footer } from "@/app/components/Footer";
 import { CarCard } from "@/app/components/CarCard";
 import { Lines } from "@/app/components/Lines";
+import { Plate } from "@/app/components/Plate";
 import { galleryOf, getCar, listPublishedCars, type Car } from "@/app/lib/cars";
 import { Gallery } from "@/app/components/Gallery";
 import { getSettings, telHref } from "@/app/lib/settings";
@@ -61,26 +62,47 @@ export default async function CarPage({ params }: Props) {
   const equipment = (lang === "en" && car.equipmentEn?.length ? car.equipmentEn : car.equipment) ?? [];
 
   // Rows without a value are left out, so listings with little data stay tidy.
-  const specs = (
-    [
-      [c.brand, car.brand],
-      [c.model, car.model],
-      [c.body, body],
-      [c.year, String(car.year)],
-      [c.firstReg, car.firstRegistration && car.firstRegistration + star],
-      [c.km, `${formatNumber(car.km, lang)} km`],
-      [c.fuel, fuel],
-      [c.gearbox, gearbox],
-      [c.drive, drive],
-      [c.power, car.powerHp && `${car.powerHp} ${c.hp}${star}`],
-      [c.consumption, car.kmPerL && `${formatNumber(car.kmPerL, lang)} ${c.kmPerL}${star}`],
-      [c.color, car.color && car.color + star],
-      [c.doors, car.doors && car.doors + star],
-      [c.seats, car.seats && car.seats + star],
-      [c.owners, car.owners !== undefined && car.owners + star],
-      [c.price, formatPrice(car.price, lang)],
-    ] as [string, string | number | false | undefined][]
-  ).filter((r): r is [string, string] => Boolean(r[1]));
+  type Row = [string, string | number | false | undefined];
+  const clean = (rows: Row[]) => rows.filter((r): r is [string, string] => Boolean(r[1]));
+  const da = lang !== "en";
+  const specGroups = [
+    {
+      title: da ? "Bilen" : "The car",
+      rows: clean([
+        [c.brand, car.brand],
+        [c.model, car.model],
+        [c.body, body],
+        [c.color, car.color && car.color + star],
+        [c.doors, car.doors && car.doors + star],
+        [c.seats, car.seats && car.seats + star],
+      ]),
+    },
+    {
+      title: da ? "Historik" : "History",
+      rows: clean([
+        [c.year, String(car.year)],
+        [c.firstReg, car.firstRegistration && car.firstRegistration + star],
+        [c.km, `${formatNumber(car.km, lang)} km`],
+        [c.owners, car.owners !== undefined && car.owners + star],
+      ]),
+    },
+    {
+      title: da ? "Motor og drift" : "Engine & drive",
+      rows: clean([
+        [c.fuel, fuel],
+        [c.gearbox, gearbox],
+        [c.drive, drive],
+        [c.power, car.powerHp && `${car.powerHp} ${c.hp}${star}`],
+        [c.consumption, car.kmPerL && `${formatNumber(car.kmPerL, lang)} ${c.kmPerL}${star}`],
+      ]),
+    },
+  ].filter((g) => g.rows.length > 0);
+  const nav = [
+    { href: "#overblik", label: da ? "Overblik" : "Overview" },
+    { href: "#specs", label: da ? "Specifikationer" : "Specs" },
+    ...(equipment.length ? [{ href: "#udstyr", label: da ? "Udstyr" : "Equipment" }] : []),
+    ...(similar.length ? [{ href: "#lignende", label: c.similar }] : []),
+  ];
 
   // Structured data so search engines can show price and mileage.
   const jsonLd = {
@@ -141,12 +163,18 @@ export default async function CarPage({ params }: Props) {
                 </h1>
                 <p className="text-3xl font-semibold tracking-tight lg:hidden">{formatPrice(car.price, lang)}</p>
               </div>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                {car.plate && <Plate value={car.plate} className="animate-float text-3xl sm:text-4xl" />}
+                <span className="text-sm text-white/60">
+                  {car.year} · {formatNumber(car.km, lang)} km · {fuel}
+                </span>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Image + buy panel, pulled up over the band */}
-        <section className="-mt-20 lg:-mt-24">
+        <section id="overblik" className="-mt-20 scroll-mt-24 lg:-mt-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-10">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
               <div className="lg:col-span-3">
@@ -155,12 +183,31 @@ export default async function CarPage({ params }: Props) {
                   alt={name}
                   labels={{ photo: c.photo, of: c.of, prev: c.prev, next: c.next, close: c.close, enlarge: c.enlarge }}
                 />
+                <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  {[
+                    [c.year, String(car.year)],
+                    [c.km, `${formatNumber(car.km, lang)} km`],
+                    [c.fuel, fuel],
+                    ...(gearbox ? [[c.gearbox, gearbox]] : []),
+                  ].map(([label, value]) => (
+                    <div key={label} className="rounded-2xl border border-border bg-card px-4 py-3 transition-shadow hover:shadow-soft">
+                      <dt className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{label}</dt>
+                      <dd className="mt-0.5 truncate text-lg font-semibold tracking-tight">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
                 {car.sampleData && car.images?.length ? (
                   <p className="mt-3 text-sm text-muted-foreground">{c.sampleNote}</p>
                 ) : null}
               </div>
 
               <aside className="lg:col-span-2 rounded-3xl border border-border bg-card p-6 shadow-elevated lg:sticky lg:top-24">
+                {car.plate && (
+                  <div className="mb-5 flex items-center justify-between gap-3 rounded-2xl bg-secondary p-3">
+                    <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{da ? "Nummerplade" : "Plate"}{star}</span>
+                    <Plate value={car.plate} className="text-xl" />
+                  </div>
+                )}
                 <span className="block text-[11px] uppercase tracking-[0.15em] text-muted-foreground">{c.price}</span>
                 <span className="block text-4xl font-semibold tracking-tight">{formatPrice(car.price, lang)}</span>
 
@@ -187,7 +234,7 @@ export default async function CarPage({ params }: Props) {
                 <div className="mt-5 flex flex-col gap-2.5">
                   <a
                     href={telHref(settings.phone)}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:scale-[1.02]"
+                    className="btn-sheen inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:scale-[1.02]"
                   >
                     <Phone size={15} /> {c.call} · {settings.phone}
                   </a>
@@ -197,6 +244,12 @@ export default async function CarPage({ params }: Props) {
                   >
                     <Mail size={15} /> {c.book}
                   </a>
+                  <a
+                    href={`${localePath(lang, "/finansiering")}?car=${encodeURIComponent(car.id)}`}
+                    className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    <Calculator size={15} /> {lang === "en" ? "Calculate monthly payment" : "Beregn månedlig ydelse"}
+                  </a>
                 </div>
               </aside>
             </div>
@@ -204,11 +257,22 @@ export default async function CarPage({ params }: Props) {
         </section>
 
         {/* Details: grouped into cards so the data reads at a glance */}
-        <section className="mt-10 bg-secondary texture-dark py-10 lg:py-14">
+        <nav aria-label="Sections" className="sticky top-[82px] z-30 mt-10 border-y border-border bg-background/85 backdrop-blur-xl">
+          <ul className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-6 py-2 lg:px-10">
+            {nav.map((n) => (
+              <li key={n.href} className="shrink-0">
+                <a href={n.href} className="inline-flex rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
+                  {n.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <section className="mesh py-10 lg:py-14">
           <div className="mx-auto max-w-7xl px-6 lg:px-10">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
               <div className="space-y-6 lg:col-span-3">
-                <Card title={`${c.descTitle}${description !== c.descFallback ? star : ""}`}>
+                <Card id="beskrivelse" title={`${c.descTitle}${description !== c.descFallback ? star : ""}`}>
                   <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                     {description.split(/\n{2,}/).map((para, i) => (
                       <p key={i} className="whitespace-pre-line">{para}</p>
@@ -228,7 +292,7 @@ export default async function CarPage({ params }: Props) {
                 </Card>
 
                 {equipment.length > 0 && (
-                  <Card title={`${c.equipmentTitle}${star}`}>
+                  <Card id="udstyr" title={`${c.equipmentTitle}${star}`}>
                     <ul className="grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
                       {equipment.map((item) => (
                         <li key={item} className="flex items-center gap-2.5 rounded-lg bg-secondary px-3 py-2">
@@ -243,18 +307,22 @@ export default async function CarPage({ params }: Props) {
 
               <div className="lg:col-span-2">
                 <div className="lg:sticky lg:top-24">
-                  <Card title={c.specsTitle}>
-                    <dl className="-mx-2 text-sm">
-                      {specs.map(([label, value], i) => (
-                        <div
-                          key={label}
-                          className={`flex justify-between gap-4 rounded-lg px-3 py-2.5 ${i % 2 === 0 ? "bg-secondary" : ""}`}
-                        >
-                          <dt className="text-muted-foreground">{label}</dt>
-                          <dd className="text-right font-semibold">{value}</dd>
+                  <Card id="specs" title={c.specsTitle}>
+                    <div className="space-y-6">
+                      {specGroups.map((g) => (
+                        <div key={g.title}>
+                          <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{g.title}</h3>
+                          <dl className="divide-y divide-border text-sm">
+                            {g.rows.map(([label, value]) => (
+                              <div key={label} className="flex justify-between gap-4 py-2.5">
+                                <dt className="text-muted-foreground">{label}</dt>
+                                <dd className="text-right font-semibold">{value}</dd>
+                              </div>
+                            ))}
+                          </dl>
                         </div>
                       ))}
-                    </dl>
+                    </div>
                     {car.sampleData && <p className="mt-4 text-xs text-muted-foreground">{c.sampleNote}</p>}
                   </Card>
                 </div>
@@ -265,7 +333,7 @@ export default async function CarPage({ params }: Props) {
 
         {/* Similar cars */}
         {similar.length > 0 && (
-          <section className="bg-background py-12 lg:py-16">
+          <section id="lignende" className="scroll-mt-40 bg-background py-12 lg:py-16">
             <div className="mx-auto max-w-7xl px-6 lg:px-10">
               <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <h2 className="text-3xl font-semibold leading-[1.05] sm:text-4xl">{c.similar}</h2>
@@ -278,7 +346,7 @@ export default async function CarPage({ params }: Props) {
               </div>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {similar.map((x) => (
-                  <CarCard key={x.id} car={x} lang={lang} t={t} />
+                  <CarCard key={x.id} car={x} lang={lang} t={t} premium />
                 ))}
               </div>
             </div>
@@ -333,9 +401,9 @@ export default async function CarPage({ params }: Props) {
   );
 }
 
-function Card({ title, children }: { title: string; children: React.ReactNode }) {
+function Card({ id, title, children }: { id?: string; title: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-2xl border border-border bg-background p-6">
+    <section id={id} className="reveal scroll-mt-40 rounded-3xl border border-border bg-background p-6 sm:p-8">
       <h2 className="mb-4 text-xl font-semibold">{title}</h2>
       {children}
     </section>

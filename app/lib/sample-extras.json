@@ -1,5 +1,6 @@
 {
   "seed-audi": {
+    "plate": "AB 12 345",
     "bodyType": "Sedan",
     "gearbox": "Automatisk",
     "drive": "Firhjulstræk",
@@ -39,6 +40,7 @@
     ]
   },
   "seed-bmw-1": {
+    "plate": "CD 34 567",
     "bodyType": "Sedan",
     "gearbox": "Automatisk",
     "drive": "Baghjulstræk",
@@ -78,6 +80,7 @@
     ]
   },
   "seed-bmw-2": {
+    "plate": "EF 56 789",
     "images": [
       "/cars/bmw-3.jpg",
       "/cars/bmw-4.jpg"
@@ -116,6 +119,7 @@
     "descriptionEn": "Almost-new 2024 BMW 520d Steptronic in black. The diesel engine is economical and strong, and the automatic gearbox makes the car comfortable in city traffic as well as on long trips.\n\nThe cabin is spacious and refined with leather upholstery, heated seats and wireless phone charging. Adaptive cruise control, navigation and a reversing camera are included in this car.\n\nThe car has had only one owner and has been serviced and prepared by GD Biler. You get an honest car with no hidden surprises and a 3-month warranty."
   },
   "seed-bmw-3": {
+    "plate": "GH 78 901",
     "images": [
       "/cars/bmw-2.jpg",
       "/cars/bmw-4.jpg"
@@ -154,6 +158,7 @@
     "descriptionEn": "2024 BMW 520d Steptronic in grey with low mileage for its year. A spacious and economical executive car that also suits the family perfectly.\n\nThe car has LED headlights, navigation, climate control and an electric tailgate. Parking sensors and a reversing camera make parking easy, and cruise control makes motorway trips more relaxed.\n\nWe have serviced the car and inspected it before it went on sale. It is ready to drive, and you get a 3-month warranty."
   },
   "seed-bmw-4": {
+    "plate": "JK 23 456",
     "images": [
       "/cars/bmw-2.jpg",
       "/cars/bmw-3.jpg"
@@ -192,6 +197,7 @@
     "descriptionEn": "2024 BMW 520d Steptronic in blue. The car is spacious, economical and comfortable, and ready to take the whole family on a long trip.\n\nEquipment includes LED headlights, navigation, climate control, heated seats, parking sensors and a reversing camera. The Steptronic gearbox makes driving smooth and relaxed.\n\nThe car has had two owners and has been inspected and serviced by us. We are happy to help with financing and arrange a test drive whenever it suits you."
   },
   "seed-lexus": {
+    "plate": "LM 45 678",
     "bodyType": "SUV",
     "gearbox": "Automatisk",
     "drive": "Firhjulstræk",
