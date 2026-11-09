@@ -343,30 +343,26 @@
     ]
   },
   {
-    "id": "citroen-c1-1-0-2011",
-    "brand": "Citroën",
-    "model": "C1 1.0",
-    "year": 2011,
-    "km": 193000,
+    "id": "peugeot-107-1-0-2012",
+    "brand": "Peugeot",
+    "model": "107 1.0",
+    "year": 2012,
+    "km": 183000,
     "fuel": "Benzin",
     "price": 25000,
     "image": "",
-    "description": "Velkørende Citroën C1 som starter og kører godt. Nysynet.\n\nFørste indregistrering 06/2011, 68 hk.\n\nHalvårlig ejerafgift: 460 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "description": "Velkørende Peugeot 107 som starter og kører godt. Nysynet.\n\nHalvårlig ejerafgift: 460 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:04.388837Z",
-    "kmPerL": 21.7,
+    "kmPerL": 23.3,
     "bodyType": "Hatchback",
-    "plate": "GW 52 924",
+    "plate": "CJ 90 272",
     "equipment": [
-      "Ny synsrapport",
-      "Seneste syn 07/2025: godkendt (ved 166.644 km)"
+      "Ny synsrapport"
     ],
-    "powerHp": 68,
     "seats": 4,
-    "firstRegistration": "06/2011",
     "equipmentEn": [
-      "New inspection report",
-      "Latest inspection 07/2025: approved (at 166.644 km)"
+      "New inspection report"
     ]
   }
 ]
