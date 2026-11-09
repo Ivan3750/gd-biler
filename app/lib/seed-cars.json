@@ -252,6 +252,14 @@
     ],
     "equipmentEn": [
       "Latest inspection 10/2026: approved (at 151.563 km)"
+    ],
+    "images": [
+      "/cars/renault-twingo-1-0-2014-2.jpg",
+      "/cars/renault-twingo-1-0-2014-3.jpg",
+      "/cars/renault-twingo-1-0-2014-4.jpg",
+      "/cars/renault-twingo-1-0-2014-5.jpg",
+      "/cars/renault-twingo-1-0-2014-6.jpg",
+      "/cars/renault-twingo-1-0-2014-7.jpg"
     ]
   },
   {
@@ -262,7 +270,7 @@
     "km": 187000,
     "fuel": "Benzin",
     "price": 69000,
-    "image": "",
+    "image": "/cars/volkswagen-golf-1-4-tsi-2015-1.jpg",
     "description": "Velkørende Volkswagen Golf som starter og kører godt.\n\nFørste indregistrering 05/2015, 122 hk.\n\nHalvårlig ejerafgift: 880 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:07.388837Z",
@@ -280,6 +288,14 @@
     ],
     "equipmentEn": [
       "Latest inspection 08/2026: approved (at 187.400 km, no faults)"
+    ],
+    "images": [
+      "/cars/volkswagen-golf-1-4-tsi-2015-2.jpg",
+      "/cars/volkswagen-golf-1-4-tsi-2015-3.jpg",
+      "/cars/volkswagen-golf-1-4-tsi-2015-4.jpg",
+      "/cars/volkswagen-golf-1-4-tsi-2015-5.jpg",
+      "/cars/volkswagen-golf-1-4-tsi-2015-6.jpg",
+      "/cars/volkswagen-golf-1-4-tsi-2015-7.jpg"
     ]
   },
   {
@@ -301,7 +317,9 @@
       "/cars/renault-clio-1-5-dci-2016-2.jpg",
       "/cars/renault-clio-1-5-dci-2016-3.jpg",
       "/cars/renault-clio-1-5-dci-2016-4.jpg",
-      "/cars/renault-clio-1-5-dci-2016-5.jpg"
+      "/cars/renault-clio-1-5-dci-2016-5.jpg",
+      "/cars/renault-clio-1-5-dci-2016-6.jpg",
+      "/cars/renault-clio-1-5-dci-2016-7.jpg"
     ],
     "powerHp": 90,
     "drive": "Forhjulstræk",
@@ -340,33 +358,53 @@
     ],
     "equipmentEn": [
       "Latest inspection 09/2025: approved (at 204.189 km)"
+    ],
+    "images": [
+      "/cars/volkswagen-polo-1-4-tdi-2015-2.jpg",
+      "/cars/volkswagen-polo-1-4-tdi-2015-3.jpg",
+      "/cars/volkswagen-polo-1-4-tdi-2015-4.jpg",
+      "/cars/volkswagen-polo-1-4-tdi-2015-5.jpg",
+      "/cars/volkswagen-polo-1-4-tdi-2015-6.jpg",
+      "/cars/volkswagen-polo-1-4-tdi-2015-7.jpg"
     ]
   },
   {
-    "id": "citroen-c1-1-0-2011",
-    "brand": "Citroën",
-    "model": "C1 1.0",
-    "year": 2011,
-    "km": 193000,
+    "id": "peugeot-107-1-0-2012",
+    "brand": "Peugeot",
+    "model": "107 1.0",
+    "year": 2012,
+    "km": 183000,
     "fuel": "Benzin",
     "price": 25000,
-    "image": "",
-    "description": "Velkørende Citroën C1 som starter og kører godt. Nysynet.\n\nFørste indregistrering 06/2011, 68 hk.\n\nHalvårlig ejerafgift: 460 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
+    "image": "/cars/peugeot-107-1-0-2012-1.jpg",
+    "images": [
+      "/cars/peugeot-107-1-0-2012-2.jpg",
+      "/cars/peugeot-107-1-0-2012-3.jpg",
+      "/cars/peugeot-107-1-0-2012-4.jpg",
+      "/cars/peugeot-107-1-0-2012-5.jpg",
+      "/cars/peugeot-107-1-0-2012-6.jpg",
+      "/cars/peugeot-107-1-0-2012-7.jpg"
+    ],
+    "description": "Velkørende Peugeot 107 som starter og kører godt. Nysynet.\n\nFørste indregistrering 05/2012, 68 hk.\n\nHalvårlig ejerafgift: 460 kr.\n\nNummerplader kan købes på 10 minutter. Bilen kan prøvekøres og ses hos GD Biler, Langmarksvej 36A, 8700 Horsens.",
     "published": true,
     "createdAt": "2026-11-08T18:27:04.388837Z",
-    "kmPerL": 21.7,
+    "kmPerL": 23.3,
     "bodyType": "Hatchback",
-    "plate": "GW 52 924",
+    "plate": "CJ 90 272",
+    "powerHp": 68,
+    "color": "Hvid",
+    "gearbox": "Manuel",
+    "drive": "Forhjulstræk",
+    "doors": 5,
+    "seats": 4,
+    "firstRegistration": "05/2012",
     "equipment": [
       "Ny synsrapport",
-      "Seneste syn 07/2025: godkendt (ved 166.644 km)"
+      "Seneste syn 10/2026: godkendt (ved 183.000 km)"
     ],
-    "powerHp": 68,
-    "seats": 4,
-    "firstRegistration": "06/2011",
     "equipmentEn": [
       "New inspection report",
-      "Latest inspection 07/2025: approved (at 166.644 km)"
+      "Latest inspection 10/2026: approved (at 183.000 km)"
     ]
   }
 ]
